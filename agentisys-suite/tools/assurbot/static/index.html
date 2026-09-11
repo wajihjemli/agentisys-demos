@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssurBot — Assistant virtuel assurance</title>
+<link rel="stylesheet" href="/assurbot/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="mark"></span>AssurBot</div>
+  <div class="meta">POC — Wajih Jemli</div>
+</div>
+
+<div class="hero">
+  <h1>Poser une question d'assurance, obtenir une réponse fiable</h1>
+  <p>AssurBot recherche dans la FAQ interne, puis reformule la réponse — sans jamais inventer d'information hors de sa base de connaissances.</p>
+</div>
+
+<div class="layout">
+
+  <div class="workbench">
+    <label class="field-label">Conversation</label>
+    <div class="chat-log" id="chatLog"></div>
+
+    <div class="chat-input-row">
+      <textarea id="chatInput" placeholder="Posez votre question sur votre assurance..." rows="1"></textarea>
+      <button class="btn-primary" id="sendBtn">Envoyer</button>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-card">
+      <h3>À propos</h3>
+      <ul class="info-list">
+        <li><span>Technologie</span><b>RAG</b></li>
+        <li><span>Base</span><b>FAQ assurance</b></li>
+        <li><span>Garantie</span><b>Pas d'hallucination</b></li>
+      </ul>
+    </div>
+
+    <div class="rail-card">
+      <h3>Exemples de questions</h3>
+      <div id="examplesList"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note"><b>AssurBot</b> — POC développé par Wajih Jemli | RAG</div>
+
+<script src="/assurbot/static/app.js"></script>
+</body>
+</html>
