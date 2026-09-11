@@ -279,6 +279,8 @@ textarea:focus, input:focus { outline: 2px solid var(--gold); outline-offset: 1p
 
 /* ===== SentiClaim ===== */
 
+.topbar .brand #toolIcon { font-size: 1.1rem; }
+
 select {
   width: 100%;
   background: var(--ink);
