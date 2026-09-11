@@ -1,4 +1,4 @@
-# 07_data_summarization / AssurRAG — Assistant Base de Connaissances RAG
-# Moteur IA (via API compatible OpenAI)
-streamlit>=1.28.0
+# assurrag — FastAPI + moteur IA (Q&A sur document)
+fastapi>=0.110.0
+uvicorn>=0.29.0
 openai>=1.30.0

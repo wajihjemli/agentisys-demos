@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssurRAG — Assistant Base de Connaissances</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="mark"></span>AssurRAG</div>
+  <div class="meta">POC — Wajih Jemli</div>
+</div>
+
+<div class="hero">
+  <h1>Répondre sur la base d'un document, jamais au-delà</h1>
+  <p>Collez des conditions générales, une procédure ou un document interne. AssurRAG répond uniquement à partir de ce texte, en citant l'article concerné.</p>
+</div>
+
+<div class="layout">
+
+  <div class="workbench">
+    <label class="field-label">Document de référence</label>
+    <textarea id="documentText" style="min-height:200px; font-family:monospace; font-size:0.85rem;" placeholder="Collez les conditions générales, une procédure, ou un document interne..."></textarea>
+
+    <label class="field-label" style="margin-top:20px;">Question</label>
+    <input type="text" id="questionInput" placeholder="Question de l'assuré ou du conseiller...">
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" id="askBtn">Répondre avec RAG</button>
+    </div>
+
+    <div class="answer-box" id="answerBox" style="display:none;"></div>
+    <div class="note-box">
+      <b>En production</b>, le document serait découpé en chunks, indexé dans une base vectorielle (FAISS/Pinecone), et le système récupérerait automatiquement les passages pertinents avant de générer la réponse.
+    </div>
+    <div id="errorBox" style="display:none; margin-top:16px; color:var(--red); font-size:0.9rem;"></div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-card">
+      <h3>AssurRAG utilise le RAG</h3>
+      <ul class="info-list">
+        <li><span>Réponse</span><b>Basée sur le document</b></li>
+        <li><span>Garantie</span><b>Pas d'hallucination</b></li>
+        <li><span>Sources</span><b>Vérifiables</b></li>
+      </ul>
+    </div>
+
+    <div class="rail-card">
+      <h3>Applications</h3>
+      <ul class="info-list">
+        <li><span>Assistant</span><b>Conseiller</b></li>
+        <li><span>FAQ</span><b>Assurés</b></li>
+        <li><span>Conformité</span><b>Réglementaire</b></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note"><b>AssurRAG</b> — POC développé par Wajih Jemli | RAG</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
