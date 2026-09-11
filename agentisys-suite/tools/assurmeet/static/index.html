@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssurMeet — AI Meeting Companion</title>
+<link rel="stylesheet" href="/assurmeet/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="mark"></span>AssurMeet</div>
+  <div class="meta">POC — Wajih Jemli</div>
+</div>
+
+<div class="hero">
+  <h1>Écouter 100% des appels, sans en écouter un seul</h1>
+  <p>Collez un transcript d'appel client. AssurMeet en extrait le résumé, les actions à suivre, le sentiment client et les risques — instantanément.</p>
+</div>
+
+<div class="layout">
+
+  <div class="workbench">
+    <label class="field-label">Transcript de l'appel</label>
+    <textarea id="transcriptText" style="min-height:220px;" placeholder="Collez ici le transcript de l'appel..."></textarea>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" id="analyzeBtn">Analyser l'appel</button>
+    </div>
+
+    <div id="resultBlock" style="display:none;">
+      <div class="summary-box" id="summaryBox"></div>
+
+      <div class="section-title">Points clés</div>
+      <ul class="bullet-list" id="pointsCles"></ul>
+
+      <div class="section-title">Actions à suivre</div>
+      <table class="actions-table">
+        <thead><tr><th>Action</th><th>Responsable</th><th>Délai</th><th>Priorité</th></tr></thead>
+        <tbody id="actionsBody"></tbody>
+      </table>
+
+      <div class="section-title">Sentiment client</div>
+      <div class="sentiment-row" id="sentimentRow"></div>
+
+      <div class="section-title">Risques identifiés</div>
+      <ul class="bullet-list risk-list" id="risquesList"></ul>
+
+      <div class="section-title">Promesses faites par le conseiller</div>
+      <ul class="bullet-list promise-list" id="promessesList"></ul>
+    </div>
+
+    <div id="errorBox" style="display:none; margin-top:20px; color:var(--red); font-size:0.9rem;"></div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-card">
+      <h3>Fonctionnalités</h3>
+      <ul class="info-list">
+        <li><span>Résumé</span><b>2-3 phrases</b></li>
+        <li><span>Actions</span><b>Avec délai</b></li>
+        <li><span>Sentiment</span><b>Émotion + score</b></li>
+        <li><span>Risques</span><b>Non-conformité</b></li>
+      </ul>
+    </div>
+
+    <div class="rail-card">
+      <h3>Gain métier</h3>
+      <p style="font-size:0.82rem; color:var(--muted); line-height:1.6; margin:0;">
+        Remplace l'écoute manuelle (2% des appels contrôlés) par une couverture de 100% des appels,
+        avec détection automatique des risques de résiliation et des non-conformités.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note"><b>AssurMeet</b> — POC développé par Wajih Jemli</div>
+
+<script src="/assurmeet/static/app.js"></script>
+</body>
+</html>

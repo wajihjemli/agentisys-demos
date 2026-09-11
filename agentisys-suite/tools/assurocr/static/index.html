@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssurOCR — Extraction intelligente de constats</title>
+<link rel="stylesheet" href="/assurocr/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="mark"></span>AssurOCR</div>
+  <div class="meta">POC — Wajih Jemli</div>
+</div>
+
+<div class="hero">
+  <h1>Extraire un constat de sinistre sans le ressaisir</h1>
+  <p>Dépose la photo ou le scan d'un constat. Le texte est lu automatiquement, puis structuré en champs exploitables — sans ressaisie manuelle.</p>
+</div>
+
+<div class="layout">
+
+  <div class="workbench">
+    <label class="field-label">Document à traiter</label>
+    <div class="dropzone" id="dropzone">
+      <div class="icon">📄</div>
+      <div class="primary">Glisser une image ici, ou cliquer pour choisir un fichier</div>
+      <div class="secondary">JPG, PNG — scan ou photo</div>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+    </div>
+    <div class="preview-strip" id="previewStrip"></div>
+
+    <hr class="divider">
+
+    <label class="field-label">Texte détecté <span style="color:var(--muted);font-weight:400;">(modifiable avant extraction)</span></label>
+    <textarea id="ocrText" placeholder="Le texte lu sur le document apparaîtra ici — vous pouvez le corriger avant de lancer l'extraction."></textarea>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" id="extractBtn" disabled>Extraire les informations</button>
+    </div>
+
+    <div class="result" id="resultBlock" style="display:none;">
+      <label class="field-label">Champs extraits</label>
+      <div class="result-grid" id="resultGrid"></div>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-card">
+      <h3>Traitement</h3>
+      <div class="step" id="step-ocr">
+        <div class="step-dot"></div>
+        <div class="step-body">
+          <div class="title">Lecture du document</div>
+          <div class="desc">Reconnaissance de caractères sur l'image</div>
+        </div>
+      </div>
+      <div class="step" id="step-ai">
+        <div class="step-dot"></div>
+        <div class="step-body">
+          <div class="title">Structuration</div>
+          <div class="desc">Le texte brut devient des champs identifiés</div>
+        </div>
+      </div>
+      <div class="step" id="step-check">
+        <div class="step-dot"></div>
+        <div class="step-body">
+          <div class="title">Vérification</div>
+          <div class="desc">Repli sur des règles métier si un champ manque</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail-card">
+      <h3>À propos</h3>
+      <ul class="info-list">
+        <li><span>Extrait</span><b>Date, lieu, parties, dégâts</b></li>
+        <li><span>Entrée</span><b>Photo ou scan</b></li>
+        <li><span>Gain</span><b>Fin de la ressaisie</b></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note"><b>AssurOCR</b> — POC développé par Wajih Jemli</div>
+
+<script src="/assurocr/static/app.js"></script>
+</body>
+</html>
