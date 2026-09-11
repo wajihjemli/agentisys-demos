@@ -3,24 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SentiClaim — Analyse de sentiment</title>
+<title>SentiClaim — Analyse de sentiment multi-secteur</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
 <div class="topbar">
-  <div class="brand"><span class="mark"></span>SentiClaim</div>
+  <div class="brand"><span class="mark"></span><span id="toolIcon">🛡️</span> <span id="toolName">SentiClaim</span></div>
   <div class="meta">POC — Wajih Jemli</div>
 </div>
 
 <div class="hero">
-  <h1>Détecter l'urgence dans une réclamation avant qu'elle n'échappe</h1>
-  <p>Sentiment, intensité émotionnelle, urgence et catégorie métier, en un appel — avec l'action recommandée pour le conseiller.</p>
+  <h1>Un moteur, sept secteurs — les mêmes signaux, un contexte différent</h1>
+  <p id="toolTagline">Détecte l'urgence dans une réclamation d'assuré avant qu'elle n'échappe.</p>
 </div>
 
 <div class="layout">
 
   <div class="workbench">
+    <label class="field-label">Secteur</label>
+    <select id="sectorSelect"></select>
+
+    <hr class="divider">
+
     <label class="field-label">Réclamation à analyser</label>
     <select id="exampleSelect">
       <option value="">-- Écrire manuellement --</option>
@@ -45,7 +50,7 @@
       <h3>À propos</h3>
       <ul class="info-list">
         <li><span>Détecte</span><b>Sentiment, urgence</b></li>
-        <li><span>Catégorise</span><b>6 familles métier</b></li>
+        <li><span>Catégorise</span><b id="categoryCount">6 familles métier</b></li>
         <li><span>Recommande</span><b>Action + délai</b></li>
       </ul>
     </div>
@@ -58,7 +63,7 @@
 
 </div>
 
-<div class="footer-note"><b>SentiClaim</b> — POC développé par Wajih Jemli</div>
+<div class="footer-note"><b>SentiClaim</b> — POC développé par Wajih Jemli | Multi-secteur</div>
 
 <script src="/static/app.js"></script>
 </body>

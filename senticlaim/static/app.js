@@ -1,3 +1,7 @@
+const sectorSelect = document.getElementById('sectorSelect');
+const toolIcon = document.getElementById('toolIcon');
+const toolName = document.getElementById('toolName');
+const toolTagline = document.getElementById('toolTagline');
 const exampleSelect = document.getElementById('exampleSelect');
 const claimText = document.getElementById('claimText');
 const analyzeBtn = document.getElementById('analyzeBtn');
@@ -84,10 +88,16 @@ exampleSelect.addEventListener('change', () => {
   if (exampleSelect.value) claimText.value = exampleSelect.value;
 });
 
-async function init() {
-  const res = await fetch('/api/bootstrap');
-  const data = await res.json();
+function applySectorData(data) {
+  toolIcon.textContent = data.icon;
+  toolName.textContent = data.tool_name;
+  toolTagline.textContent = data.tagline;
+  document.title = `${data.tool_name} — Analyse de sentiment`;
 
+  resultBlock.style.display = 'none';
+  claimText.value = '';
+
+  exampleSelect.innerHTML = '<option value="">-- Écrire manuellement --</option>';
   data.examples.forEach(ex => {
     const opt = document.createElement('option');
     opt.value = ex;
@@ -103,6 +113,34 @@ async function init() {
     row.innerHTML = `<span class="qs-text">${short}</span><span class="qs-badge ${sentimentClass(item.sentiment)}">${item.sentiment}</span>`;
     quickScan.appendChild(row);
   });
+}
+
+sectorSelect.addEventListener('change', async () => {
+  const res = await fetch('/api/sector', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sector: sectorSelect.value })
+  });
+  const data = await res.json();
+  if (!data.error) applySectorData(data);
+});
+
+async function init() {
+  const sectorsRes = await fetch('/api/sectors');
+  const sectorsData = await sectorsRes.json();
+
+  sectorSelect.innerHTML = '';
+  Object.entries(sectorsData.sectors).forEach(([id, s]) => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = `${s.icon} ${s.tool_name}`;
+    sectorSelect.appendChild(opt);
+  });
+  sectorSelect.value = sectorsData.default;
+
+  const bootstrapRes = await fetch('/api/bootstrap');
+  const bootstrapData = await bootstrapRes.json();
+  applySectorData(bootstrapData);
 }
 
 init();

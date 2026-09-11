@@ -1,0 +1,158 @@
+{
+  "_comment": "Configuration sectorielle de SentiClaim. Comme sectors.config.json pour AssurBot : seule cette config change selon le secteur, le moteur d'analyse (lexique + IA) reste identique.",
+  "default_sector": "assurance",
+  "sectors": {
+    "assurance": {
+      "tool_name": "SentiClaim",
+      "icon": "🛡️",
+      "tagline": "Détecte l'urgence dans une réclamation d'assuré avant qu'elle n'échappe.",
+      "persona": "compagnie d'assurance",
+      "categories": ["sinistre", "remboursement", "contrat", "service_client", "resiliation", "général"],
+      "category_keywords": {
+        "sinistre": ["sinistre", "accident", "dégât", "dommage", "vol", "incendie", "inondation"],
+        "remboursement": ["remboursement", "rembourser", "frais", "facture", "devis", "paiement"],
+        "contrat": ["contrat", "garantie", "couverture", "exclusion", "condition", "clause"],
+        "service_client": ["conseiller", "appel", "attente", "standard", "accueil", "réponse"],
+        "resiliation": ["résilier", "résiliation", "résilié", "annuler"]
+      },
+      "examples": [
+        "Mon sinistre n'est toujours pas traité après 3 semaines. C'est inacceptable ! Je veux parler à un responsable.",
+        "Merci pour votre rapidité. Le remboursement a été effectué sous 5 jours. Très satisfait de votre service.",
+        "J'attends depuis 2 mois un remboursement de 850€ pour mes frais dentaires. Personne ne me répond. C'est du vol !",
+        "Le conseiller était très aimable et a résolu mon problème en 10 minutes. Bravo à votre équipe.",
+        "Mon père est hospitalisé en urgence à l'étranger et votre assistance ne décroche pas. C'est une urgence vitale !",
+        "Je souhaite résilier mon contrat. Vos conditions ont changé sans préavis. Je vais saisir le médiateur."
+      ]
+    },
+    "telecom": {
+      "tool_name": "TechSense",
+      "icon": "📡",
+      "tagline": "Détecte l'urgence dans une réclamation client télécom avant qu'elle n'échappe.",
+      "persona": "opérateur télécom",
+      "categories": ["panne", "facturation", "abonnement", "service_client", "resiliation", "général"],
+      "category_keywords": {
+        "panne": ["panne", "coupure", "connexion", "internet", "box", "ligne"],
+        "facturation": ["facture", "facturation", "prélèvement", "montant", "erreur"],
+        "abonnement": ["abonnement", "forfait", "option", "changement"],
+        "service_client": ["conseiller", "appel", "attente", "standard", "accueil", "réponse"],
+        "resiliation": ["résilier", "résiliation", "résilié", "annuler"]
+      },
+      "examples": [
+        "Ma connexion est coupée depuis 3 jours et personne ne me répond. C'est inadmissible pour le télétravail !",
+        "Le technicien est intervenu rapidement et a résolu le problème en 20 minutes. Merci pour la réactivité.",
+        "J'ai été facturé deux fois ce mois-ci pour le même abonnement, c'est du vol !",
+        "Toute ma rue est privée d'internet depuis ce matin, c'est urgent, on ne peut plus travailler.",
+        "Je souhaite résilier mon abonnement, les tarifs ont augmenté sans prévenir.",
+        "Super support, l'opérateur a changé mon forfait en 5 minutes sans souci."
+      ]
+    },
+    "fintech": {
+      "tool_name": "PaySense",
+      "icon": "💳",
+      "tagline": "Détecte l'urgence dans une réclamation liée à un paiement avant qu'elle n'échappe.",
+      "persona": "service de paiement en ligne",
+      "categories": ["transaction", "fraude", "compte", "service_client", "resiliation", "général"],
+      "category_keywords": {
+        "transaction": ["paiement", "virement", "transaction", "montant", "prélèvement"],
+        "fraude": ["fraude", "piraté", "vol", "suspect", "non autorisé"],
+        "compte": ["compte", "solde", "identité", "vérification", "blocage"],
+        "service_client": ["conseiller", "appel", "attente", "support"],
+        "resiliation": ["fermer", "résilier", "clôturer", "compte"]
+      },
+      "examples": [
+        "Une transaction que je n'ai pas faite est apparue sur mon compte, je pense que j'ai été piraté !",
+        "Merci pour la rapidité, mon remboursement a été traité en 2 jours seulement.",
+        "Mon compte est bloqué depuis hier sans explication, c'est urgent, j'ai besoin d'accéder à mon argent.",
+        "Le virement que j'ai fait il y a une semaine n'est toujours pas arrivé, c'est inacceptable.",
+        "Je veux fermer mon compte, les frais cachés sont scandaleux.",
+        "Interface claire, support réactif, je recommande ce service."
+      ]
+    },
+    "ecommerce": {
+      "tool_name": "ShopSense",
+      "icon": "🛒",
+      "tagline": "Détecte l'urgence dans une réclamation de commande avant qu'elle n'échappe.",
+      "persona": "site e-commerce",
+      "categories": ["livraison", "produit", "remboursement", "service_client", "commande", "général"],
+      "category_keywords": {
+        "livraison": ["livraison", "colis", "retard", "transporteur", "livré"],
+        "produit": ["produit", "article", "défectueux", "abîmé", "conforme"],
+        "remboursement": ["remboursement", "retour", "rembourser"],
+        "service_client": ["conseiller", "appel", "attente", "support"],
+        "commande": ["commande", "annuler", "modifier"]
+      },
+      "examples": [
+        "Mon colis est marqué livré mais je n'ai rien reçu, c'est inadmissible !",
+        "Le produit reçu est différent de celui commandé, très déçu.",
+        "Retour traité et remboursé en 3 jours, service impeccable, merci !",
+        "Ça fait 2 semaines que j'attends ma commande sans nouvelles, c'est urgent, j'en ai besoin pour un cadeau.",
+        "Je veux annuler ma commande, j'ai trouvé moins cher ailleurs.",
+        "Le conseiller a été très aimable et a résolu mon souci de livraison en 10 minutes."
+      ]
+    },
+    "automobile": {
+      "tool_name": "AutoSense",
+      "icon": "🚗",
+      "tagline": "Détecte l'urgence dans une réclamation client véhicule avant qu'elle n'échappe.",
+      "persona": "constructeur automobile",
+      "categories": ["panne", "garantie", "service_client", "reprise", "général"],
+      "category_keywords": {
+        "panne": ["panne", "voyant", "moteur", "démarre"],
+        "garantie": ["garantie", "couverture", "réparation", "prise en charge"],
+        "service_client": ["conseiller", "concessionnaire", "rendez-vous"],
+        "reprise": ["reprise", "revente", "valeur"]
+      },
+      "examples": [
+        "Mon véhicule est tombé en panne sur l'autoroute, c'est une urgence, j'ai besoin d'assistance immédiate.",
+        "La réparation sous garantie a été prise en charge sans discussion, très satisfait.",
+        "Le voyant moteur reste allumé après la révision, c'est inacceptable pour un véhicule neuf.",
+        "Le concessionnaire ne me rappelle pas depuis une semaine pour mon rendez-vous d'entretien.",
+        "Accueil impeccable et diagnostic rapide, bravo à l'équipe.",
+        "Je souhaite connaître la valeur de reprise de mon véhicule."
+      ]
+    },
+    "edtech": {
+      "tool_name": "LearnSense",
+      "icon": "🎓",
+      "tagline": "Détecte l'urgence dans une réclamation d'apprenant avant qu'elle n'échappe.",
+      "persona": "plateforme de formation en ligne",
+      "categories": ["technique", "pedagogie", "facturation", "service_client", "abandon", "général"],
+      "category_keywords": {
+        "technique": ["plateforme", "bug", "connexion", "vidéo", "accès"],
+        "pedagogie": ["formateur", "module", "contenu", "évaluation"],
+        "facturation": ["facture", "paiement", "prélèvement"],
+        "service_client": ["support", "réponse", "contact"],
+        "abandon": ["abandonner", "arrêter", "résilier"]
+      },
+      "examples": [
+        "La plateforme plante à chaque fois que je lance une vidéo, c'est très frustrant.",
+        "Le formateur a répondu à toutes mes questions rapidement, formation de qualité.",
+        "Je suis prélevé alors que j'ai résilié mon abonnement il y a un mois, c'est inadmissible.",
+        "Je n'arrive plus à accéder à mes modules depuis hier, c'est urgent, mon examen est demain.",
+        "Je souhaite abandonner la formation, le contenu ne correspond pas à mes attentes.",
+        "Support très réactif, mon problème technique a été résolu en une heure."
+      ]
+    },
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoSense",
+      "icon": "🦿",
+      "tagline": "Détecte l'urgence dans une réclamation liée à une attelle avant qu'elle n'échappe.",
+      "persona": "service après-vente d'attelles orthopédiques",
+      "categories": ["envoi", "remboursement", "ordonnance", "service_client", "général"],
+      "category_keywords": {
+        "envoi": ["attelle", "envoi", "livraison", "reçu"],
+        "remboursement": ["remboursement", "mutuelle", "sécurité sociale", "dépassement"],
+        "ordonnance": ["ordonnance", "consentement", "chirurgien", "hôpital"],
+        "service_client": ["conseiller", "appel", "attente"]
+      },
+      "examples": [
+        "Je n'ai toujours pas reçu mon attelle alors que mon opération est dans 2 jours, c'est urgent !",
+        "La demande de remboursement a été envoyée le jour même, très professionnel.",
+        "Personne ne m'a recontacté pour mes informations de mutuelle, ça fait une semaine.",
+        "Le dépassement à régler n'était pas clair, j'ai eu une mauvaise surprise.",
+        "Prise en charge rapide et rassurante, merci à l'équipe.",
+        "Je ne sais pas si mon dossier est dans le parcours hôpital ou chirurgien, personne ne me répond."
+      ]
+    }
+  }
+}

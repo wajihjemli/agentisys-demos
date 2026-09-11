@@ -1,11 +1,14 @@
 """
-SentiClaim — Analyse de sentiment, urgence et catégorie métier d'une réclamation assurance.
+SentiClaim — Analyse de sentiment, urgence et catégorie métier d'une réclamation, multi-secteur.
+Le code ne change jamais : seul le secteur actif (config dans sectorbot/) détermine le nom
+affiché, les catégories métier et les exemples utilisés.
 POC — Wajih Jemli
 """
 
 import json
 import os
 import re
+from pathlib import Path
 
 import openai
 from fastapi import FastAPI
@@ -19,8 +22,18 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 client = openai.OpenAI(api_key=GROQ_API_KEY, base_url="https://api.groq.com/openai/v1") if GROQ_API_KEY else None
 
-CATEGORIES = ["sinistre", "remboursement", "contrat", "service_client", "resiliation", "général"]
+# sectorbot/ vit à la racine du repo, en frère de ce dossier — nécessite que le repo
+# entier soit cloné ensemble (ce n'est pas un microservice isolé).
+SECTORBOT_DIR = Path(__file__).parent.parent / "sectorbot"
 
+with open(SECTORBOT_DIR / "senticlaim.config.json", "r", encoding="utf-8") as f:
+    _config = json.load(f)
+SECTORS = _config["sectors"]
+DEFAULT_SECTOR = _config["default_sector"]
+
+# Lexiques de sentiment — génériques, partagés par tous les secteurs (le vocabulaire
+# émotionnel du français ne change pas d'un métier à l'autre, contrairement aux
+# catégories et exemples, qui eux sont propres à chaque secteur).
 MOTS_NEGATIFS = [
     "refusé", "refus", "rejette", "rejeté", "impossible", "inacceptable", "scandaleux",
     "indigné", "furieux", "énervé", "mécontent", "insatisfait", "déçu", "déception",
@@ -38,27 +51,15 @@ MOTS_POSITIFS = [
 MOTS_URGENCE = [
     "urgent", "urgence", "hospitalisation", "décès", "accident", "grave",
     "incapacité", "sinistre", "catastrophe", "inondation", "incendie", "vol", "agression",
-]
-CATEGORIE_KEYWORDS = {
-    "sinistre": ["sinistre", "accident", "dégât", "dommage", "vol", "incendie", "inondation"],
-    "remboursement": ["remboursement", "rembourser", "frais", "facture", "devis", "paiement"],
-    "contrat": ["contrat", "garantie", "couverture", "exclusion", "condition", "clause"],
-    "service_client": ["conseiller", "appel", "attente", "standard", "accueil", "réponse"],
-    "resiliation": ["résilier", "résiliation", "résilié", "annuler"],
-}
-
-EXEMPLES = [
-    "Mon sinistre n'est toujours pas traité après 3 semaines. C'est inacceptable ! Je veux parler à un responsable.",
-    "Merci pour votre rapidité. Le remboursement a été effectué sous 5 jours. Très satisfait de votre service.",
-    "J'attends depuis 2 mois un remboursement de 850€ pour mes frais dentaires. Personne ne me répond. C'est du vol !",
-    "Le conseiller était très aimable et a résolu mon problème en 10 minutes. Bravo à votre équipe.",
-    "Mon père est hospitalisé en urgence à l'étranger et votre assistance ne décroche pas. C'est une urgence vitale !",
-    "Je souhaite résilier mon contrat. Vos conditions ont changé sans préavis. Je vais saisir le médiateur.",
+    "panne", "fraude", "piraté", "bloqué",
 ]
 
+current_sector = DEFAULT_SECTOR
 
-def analyze_lexicon(text: str) -> dict:
+
+def analyze_lexicon(text: str, sector_id: str) -> dict:
     """Analyse de secours par lexique métier, sans appel IA (hors-ligne, instantanée)."""
+    cfg = SECTORS[sector_id]
     text_lower = text.lower()
     words = re.findall(r"\b\w+\b", text_lower)
 
@@ -77,12 +78,13 @@ def analyze_lexicon(text: str) -> dict:
         sentiment = "NEUTRE"
 
     urgence = any(u in text_lower for u in MOTS_URGENCE)
-    cat_scores = {cat: sum(1 for k in kws if k in text_lower) for cat, kws in CATEGORIE_KEYWORDS.items()}
-    categorie = max(cat_scores, key=cat_scores.get) if max(cat_scores.values()) > 0 else "général"
+    cat_keywords = cfg["category_keywords"]
+    cat_scores = {cat: sum(1 for k in kws if k in text_lower) for cat, kws in cat_keywords.items()}
+    categorie = max(cat_scores, key=cat_scores.get) if cat_scores and max(cat_scores.values()) > 0 else "général"
     intensity = min(100, int((abs(score) + (2 if urgence else 0)) * 15))
 
     if sentiment == "NÉGATIF" and urgence:
-        action = "ESCALADE IMMÉDIATE : Appeler le client sous 1h. Sinistre/urgence détecté(e)."
+        action = "ESCALADE IMMÉDIATE : Appeler le client sous 1h. Incident/urgence détecté(e)."
     elif sentiment == "NÉGATIF" and intensity > 60:
         action = "PRIORITAIRE : Contacter le client sous 4h. Risque de plainte/résiliation."
     elif sentiment == "NÉGATIF":
@@ -102,14 +104,16 @@ def analyze_lexicon(text: str) -> dict:
     }
 
 
-def analyze_with_ai(text: str) -> dict:
-    prompt = f"""Tu es un analyste qualité senior dans une compagnie d'assurance.
+def analyze_with_ai(text: str, sector_id: str) -> dict:
+    cfg = SECTORS[sector_id]
+    categories = cfg["categories"]
+    prompt = f"""Tu es un analyste qualité senior dans un(e) {cfg['persona']}.
 Analyse cette réclamation client et réponds UNIQUEMENT par un objet JSON strict (pas de texte autour, pas de markdown), avec exactement ces clés :
 {{
   "sentiment": "POSITIF" ou "NÉGATIF" ou "NEUTRE",
   "intensity": entier de 0 à 100 (intensité émotionnelle),
-  "urgence": true ou false (urgence vitale, sinistre grave, hospitalisation...),
-  "categorie": une valeur parmi {CATEGORIES},
+  "urgence": true ou false (urgence vitale, incident grave...),
+  "categorie": une valeur parmi {categories},
   "mots_cles": liste de 2 à 6 mots ou expressions déclencheurs tirés du texte,
   "action": une phrase d'action recommandée pour le conseiller, avec délai
 }}
@@ -129,7 +133,7 @@ Réclamation : "{text}" """
         result["sentiment"] = "NEUTRE"
     result["intensity"] = max(0, min(100, int(result.get("intensity", 0))))
     result["urgence"] = bool(result.get("urgence", False))
-    result["categorie"] = result.get("categorie") if result.get("categorie") in CATEGORIES else "général"
+    result["categorie"] = result.get("categorie") if result.get("categorie") in categories else "général"
     result["mots_cles"] = result.get("mots_cles", [])
     result["action"] = result.get("action", "")
     return result
@@ -140,11 +144,43 @@ def index():
     return FileResponse("static/index.html")
 
 
+@app.get("/api/sectors")
+def list_sectors():
+    return {
+        "sectors": {sid: {"tool_name": c["tool_name"], "icon": c["icon"], "tagline": c["tagline"]} for sid, c in SECTORS.items()},
+        "default": DEFAULT_SECTOR,
+    }
+
+
+class SectorRequest(BaseModel):
+    sector: str
+
+
+@app.post("/api/sector")
+def set_sector(req: SectorRequest):
+    global current_sector
+    if req.sector not in SECTORS:
+        return {"error": "Secteur inconnu."}
+    current_sector = req.sector
+    return sector_payload(current_sector)
+
+
+def sector_payload(sector_id: str) -> dict:
+    cfg = SECTORS[sector_id]
+    quick_scan = [{"text": ex, **analyze_lexicon(ex, sector_id)} for ex in cfg["examples"]]
+    return {
+        "sector": sector_id,
+        "tool_name": cfg["tool_name"],
+        "icon": cfg["icon"],
+        "tagline": cfg["tagline"],
+        "examples": cfg["examples"],
+        "quick_scan": quick_scan,
+    }
+
+
 @app.get("/api/bootstrap")
 def bootstrap():
-    """Exemples cliquables + aperçu rapide (lexique, hors-ligne) des 6 réclamations types."""
-    quick_scan = [{"text": ex, **analyze_lexicon(ex)} for ex in EXEMPLES]
-    return {"examples": EXEMPLES, "quick_scan": quick_scan}
+    return sector_payload(current_sector)
 
 
 class AnalyzeRequest(BaseModel):
@@ -155,9 +191,9 @@ class AnalyzeRequest(BaseModel):
 def analyze(req: AnalyzeRequest):
     if client:
         try:
-            result = analyze_with_ai(req.text)
+            result = analyze_with_ai(req.text, current_sector)
             return {**result, "mode": "ai"}
         except Exception:
             pass
-    result = analyze_lexicon(req.text)
+    result = analyze_lexicon(req.text, current_sector)
     return {**result, "mode": "lexicon"}
