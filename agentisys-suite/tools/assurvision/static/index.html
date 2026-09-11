@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AssurVision — Analyse IA de photos sinistres</title>
+<link rel="stylesheet" href="/assurvision/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="mark"></span>AssurVision</div>
+  <div class="meta">POC — Wajih Jemli</div>
+</div>
+
+<div class="hero">
+  <h1>Estimer la gravité d'un sinistre d'un coup d'œil</h1>
+  <p>Dépose la photo envoyée par l'assuré. L'IA identifie le type de dommage, estime la gravité et propose une première recommandation — avant même l'expertise.</p>
+</div>
+
+<div class="layout">
+
+  <div class="workbench">
+    <label class="field-label">Photo du sinistre</label>
+    <div class="dropzone" id="dropzone">
+      <div class="icon">📸</div>
+      <div class="primary">Glisser une photo ici, ou cliquer pour choisir un fichier</div>
+      <div class="secondary">JPG, PNG</div>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+    </div>
+
+    <div class="photo-preview" id="photoPreview" style="display:none;">
+      <img id="previewImg" alt="Photo du sinistre">
+    </div>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" id="analyzeBtn" disabled>Analyser la photo</button>
+    </div>
+
+    <div id="translateInfo" class="translate-info" style="display:none;">ℹ️ L'analyse a été retraduite automatiquement en français.</div>
+
+    <div class="result" id="resultBlock" style="display:none;">
+      <div class="severity-badge" id="severityBadge" style="display:none;">
+        <span class="sb-label">Gravité estimée</span>
+        <span class="sb-value" id="severityValue"></span>
+      </div>
+      <div class="analysis-text" id="analysisText"></div>
+    </div>
+
+    <div id="errorBox" style="display:none; margin-top:16px; color:var(--red); font-size:0.9rem;"></div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-card">
+      <h3>Traitement</h3>
+      <div class="step" id="step-upload">
+        <div class="step-dot"></div>
+        <div class="step-body">
+          <div class="title">Photo reçue</div>
+          <div class="desc">Chargée depuis l'appareil de l'assuré</div>
+        </div>
+      </div>
+      <div class="step" id="step-vision">
+        <div class="step-dot"></div>
+        <div class="step-body">
+          <div class="title">Analyse vision IA</div>
+          <div class="desc">Type de dommage, gravité, recommandations</div>
+        </div>
+      </div>
+      <div class="step" id="step-check">
+        <div class="step-dot"></div>
+        <div class="step-body">
+          <div class="title">Vérification langue</div>
+          <div class="desc">Retraduction automatique si nécessaire</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rail-card">
+      <h3>À propos</h3>
+      <ul class="info-list">
+        <li><span>Entrée</span><b>Photo du sinistre</b></li>
+        <li><span>Sortie</span><b>Gravité + recommandations</b></li>
+        <li><span>Usage</span><b>Premier diagnostic</b></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note"><b>AssurVision</b> — POC développé par Wajih Jemli</div>
+
+<script src="/assurvision/static/app.js"></script>
+</body>
+</html>
