@@ -16,11 +16,11 @@ st.markdown("""
 <style>
     .main-title { font-size: 2.2rem; font-weight: bold; color: #1E3A5F; text-align: center; }
     .subtitle { font-size: 1rem; color: #5A6C7D; text-align: center; margin-bottom: 2rem; }
-    .positive { background-color: #E8F5E9; padding: 15px; border-radius: 10px; border-left: 5px solid #4CAF50; }
-    .negative { background-color: #FFEBEE; padding: 15px; border-radius: 10px; border-left: 5px solid #F44336; }
-    .neutral { background-color: #FFF3E0; padding: 15px; border-radius: 10px; border-left: 5px solid #FF9800; }
-    .metric-box { background-color: #F5F5F5; padding: 15px; border-radius: 10px; text-align: center; }
-    .action-box { background-color: #E3F2FD; padding: 12px; border-radius: 8px; margin-top: 10px; }
+    .positive { background-color: #E8F5E9; color: #1a1a1a; padding: 15px; border-radius: 10px; border-left: 5px solid #4CAF50; }
+    .negative { background-color: #FFEBEE; color: #1a1a1a; padding: 15px; border-radius: 10px; border-left: 5px solid #F44336; }
+    .neutral { background-color: #FFF3E0; color: #1a1a1a; padding: 15px; border-radius: 10px; border-left: 5px solid #FF9800; }
+    .metric-box { background-color: #F5F5F5; color: #1a1a1a; padding: 15px; border-radius: 10px; text-align: center; }
+    .action-box { background-color: #E3F2FD; color: #1a1a1a; padding: 12px; border-radius: 8px; margin-top: 10px; }
 </style>
 """, unsafe_allow_html=True)
 
