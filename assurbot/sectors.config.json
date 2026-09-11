@@ -57,6 +57,15 @@
       "system_prompt": "Tu es l'assistant d'une plateforme de formation en ligne. Tu réponds aux questions des apprenants sur les modules, la progression et les modalités d'évaluation, avec un ton encourageant et pédagogique.",
       "sample_knowledge_file": "knowledge/edtech_faq.txt",
       "field_labels": {"input": "Question de l'apprenant", "context": "Programme / FAQ formation"}
+    },
+
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoBot",
+      "icon": "🦿",
+      "tagline": "Suit l'envoi d'une attelle, la prise en charge d'une ordonnance et la demande de remboursement.",
+      "system_prompt": "Tu es l'assistant d'un service après-vente spécialisé dans l'envoi de dispositifs médicaux (attelles orthopédiques) prescrits en urgence, à l'hôpital ou par un chirurgien. Tu aides les patients et les établissements à suivre la confirmation d'envoi, la prise en compte de l'ordonnance et du consentement, et l'avancement de la demande de remboursement auprès de la Sécurité Sociale et de la mutuelle. Ton professionnel, rassurant, jamais médical (tu ne donnes aucun avis clinique).",
+      "sample_knowledge_file": "knowledge/dispositifs_medicaux_faq.txt",
+      "field_labels": {"input": "Question du patient / établissement", "context": "Statut commande / ordonnance / remboursement"}
     }
 
   }
