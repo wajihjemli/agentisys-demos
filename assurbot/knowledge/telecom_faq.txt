@@ -1,0 +1,23 @@
+BASE DE CONNAISSANCES — TechBot (Télécom / FAI)
+[Contenu illustratif pour démonstration — à remplacer par des données réelles d'un client]
+
+Q: Ma box internet ne s'allume plus, que faire ?
+R: Vérifiez que le câble d'alimentation est bien branché, débranchez-le 30 secondes puis rebranchez-le. Si le voyant reste éteint, il peut s'agir d'une panne matérielle nécessitant un remplacement.
+
+Q: J'ai une connexion internet très lente, comment diagnostiquer ?
+R: Redémarrez votre box, vérifiez le nombre d'appareils connectés simultanément, et testez en connexion filaire plutôt qu'en Wi-Fi pour isoler le problème.
+
+Q: Comment réinitialiser ma box aux paramètres d'usine ?
+R: Un bouton de réinitialisation (souvent avec une pointe) se trouve à l'arrière de la box. Un appui de 10 secondes restaure les paramètres d'origine — attention, cela efface votre configuration Wi-Fi personnalisée.
+
+Q: Je n'ai plus de tonalité sur ma ligne téléphonique fixe, est-ce lié à internet ?
+R: Sur une ligne en Voix sur IP, oui — une panne internet coupe généralement aussi le téléphone fixe. Vérifiez d'abord votre connexion internet.
+
+Q: Comment changer le mot de passe de mon Wi-Fi ?
+R: Depuis l'interface d'administration de votre box (généralement accessible via une adresse du type 192.168.1.1), dans la section "Wi-Fi" ou "Réseau sans fil".
+
+Q: Un technicien doit-il intervenir à domicile pour ma panne ?
+R: Uniquement si les diagnostics à distance ne résolvent pas le problème — un rendez-vous est alors proposé, généralement sous 48h à 5 jours ouvrés.
+
+Q: Comment savoir si la panne vient de mon logement ou du réseau ?
+R: Une panne réseau touche généralement tout un quartier ; nous pouvons vérifier en temps réel s'il y a un incident signalé sur votre zone.

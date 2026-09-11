@@ -1,0 +1,23 @@
+BASE DE CONNAISSANCES — LearnBot (Formation en ligne / EdTech)
+[Contenu illustratif pour démonstration — à remplacer par des données réelles d'un client]
+
+Q: Comment accéder à mes modules de formation ?
+R: Depuis votre espace apprenant, section "Mes formations" — tous les modules auxquels vous êtes inscrit y sont listés avec votre progression.
+
+Q: Puis-je suivre la formation à mon rythme ?
+R: Oui pour les formations en autonomie ; certains parcours avec certification ont des délais indicatifs à respecter, visibles sur la page du programme.
+
+Q: Comment obtenir mon certificat de fin de formation ?
+R: Il est généré automatiquement une fois tous les modules validés et l'évaluation finale réussie, téléchargeable depuis votre espace apprenant.
+
+Q: J'ai raté l'évaluation finale, puis-je la repasser ?
+R: Oui, généralement deux tentatives supplémentaires sont possibles après un délai de révision de 48h.
+
+Q: Comment contacter un formateur en cas de question sur le contenu ?
+R: Via la messagerie intégrée à chaque module, ou lors des sessions de questions-réponses en direct si votre formation en propose.
+
+Q: Ma progression ne s'est pas sauvegardée après un module, que faire ?
+R: Vérifiez que vous êtes resté connecté jusqu'à l'écran de fin de module — en cas de perte de progression, signalez-le, une restauration manuelle est possible.
+
+Q: Puis-je télécharger les supports de cours pour les consulter hors ligne ?
+R: Selon la formation, certains supports (PDF, présentations) sont téléchargeables ; les contenus vidéo restent généralement accessibles en streaming uniquement.
