@@ -1,0 +1,152 @@
+/* ===== AgentiSys Demos — Design System v1 =====
+   Palette : ancrée sur l'identité déjà posée sur le CV/LinkedIn de Wajih.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #0B1220;
+  --surface: #121A2B;
+  --surface-2: #182238;
+  --line: #24304A;
+  --text: #E7EAF0;
+  --muted: #8B96AC;
+  --gold: #E8B34C;
+  --teal: #5FB8AE;
+  --amber: #B98A38;
+  --green: #3FBF7F;
+  --red: #E2555A;
+  --radius-s: 8px;
+  --radius-m: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 800px 500px at 15% -10%, rgba(232, 179, 76, 0.06), transparent),
+    radial-gradient(ellipse 700px 500px at 100% 10%, rgba(95, 184, 174, 0.05), transparent);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.topbar .brand .mark {
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, var(--gold), var(--teal));
+  flex-shrink: 0;
+}
+
+.topbar .meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.hero {
+  padding: 56px 40px 32px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 2.3rem;
+  line-height: 1.15;
+  margin: 0 0 10px;
+  max-width: 700px;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 620px;
+  margin: 0;
+  line-height: 1.55;
+}
+
+.tool-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 40px 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 26px;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+}
+
+.tool-card .icon { font-size: 1.6rem; }
+.tool-card .name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+.tool-card .desc {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  flex: 1;
+}
+.tool-card .stack {
+  font-size: 0.74rem;
+  color: var(--teal);
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.tool-card .cta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.footer-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  padding: 28px 40px 40px;
+}
+.footer-note b { color: var(--text); font-weight: 500; }
+
+@media (max-width: 860px) {
+  .hero, .tool-grid { padding-left: 20px; padding-right: 20px; }
+}

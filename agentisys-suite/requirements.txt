@@ -1,0 +1,21 @@
+# AgentiSys Suite — dépendances combinées des 8 outils
+fastapi>=0.110.0
+uvicorn>=0.29.0
+python-dotenv>=1.0.0
+python-multipart>=0.0.9
+openai>=1.30.0
+pydantic>=2.0.0
+
+# AssurBot / AssurRAG — retrieval TF-IDF
+numpy>=1.26.0
+scikit-learn>=1.4.0
+
+# AssurOCR / AssurVision — traitement d'image
+Pillow>=10.0.0
+pytesseract>=0.3.10
+
+# AssurTranslate — audio
+gTTS>=2.4.0
+
+# AssurVoice — audio
+edge-tts==7.2.8
