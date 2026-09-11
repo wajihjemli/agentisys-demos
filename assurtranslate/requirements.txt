@@ -1,0 +1,4 @@
+# 04_traducteur_multilingue / AssurTranslate — Traducteur Service Client
+streamlit>=1.28.0
+openai>=1.30.0
+gTTS>=2.4.0

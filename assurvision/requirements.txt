@@ -1,0 +1,5 @@
+# 03_image_captioning / AssurVision — Analyse Photos Sinistres avec Groq Vision
+# Streamlit + Pillow + OpenAI (client Groq)
+streamlit>=1.35.0
+Pillow>=10.0.0
+openai>=1.30.0
