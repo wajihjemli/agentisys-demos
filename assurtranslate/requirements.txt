@@ -1,4 +1,5 @@
-# 04_traducteur_multilingue / AssurTranslate — Traducteur Service Client
-streamlit>=1.28.0
+# assurtranslate — FastAPI + moteur IA (traduction) + gTTS (audio)
+fastapi>=0.110.0
+uvicorn>=0.29.0
 openai>=1.30.0
 gTTS>=2.4.0
