@@ -8,6 +8,12 @@ const resultGrid = document.getElementById('resultGrid');
 
 let currentFile = null;
 
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 dropzone.addEventListener('click', () => fileInput.click());
 dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('drag'); });
 dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag'));
@@ -76,7 +82,7 @@ extractBtn.addEventListener('click', async () => {
     for (const [key, value] of Object.entries(data.fields || {})) {
       const cell = document.createElement('div');
       cell.className = 'result-field';
-      cell.innerHTML = `<div class="k">${key}</div><div class="v">${value || '—'}</div>`;
+      cell.innerHTML = `<div class="k">${escapeHtml(key)}</div><div class="v">${escapeHtml(value || '—')}</div>`;
       resultGrid.appendChild(cell);
     }
     resultBlock.style.display = 'block';

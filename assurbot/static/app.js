@@ -15,7 +15,7 @@ function renderAssistantMessage({ answer, sources, mode }) {
 
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble';
-  bubble.innerHTML = escapeHtml(answer).replace(/\n/g, '<br>');
+  bubble.innerHTML = escapeHtml(answer).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
 
   if (mode === 'raw_faq') {
     const flag = document.createElement('div');

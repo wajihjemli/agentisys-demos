@@ -9,6 +9,12 @@ const actionCallout = document.getElementById('actionCallout');
 const modeFlag = document.getElementById('modeFlag');
 const quickScan = document.getElementById('quickScan');
 
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function sentimentClass(sentiment) {
   return 'sentiment-' + sentiment.toLowerCase().replace('é', 'e');
 }
@@ -40,7 +46,7 @@ function renderResult(result, sourceText) {
     tagRow.appendChild(tag);
   });
 
-  actionCallout.innerHTML = `<b>Action recommandée —</b> ${result.action}`;
+  actionCallout.innerHTML = `<b>Action recommandée —</b> ${escapeHtml(result.action || '')}`;
 
   if (result.mode === 'lexicon') {
     modeFlag.style.display = 'block';

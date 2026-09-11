@@ -9,6 +9,16 @@ const sentimentRow = document.getElementById('sentimentRow');
 const risquesList = document.getElementById('risquesList');
 const promessesList = document.getElementById('promessesList');
 
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderText(str) {
+  return escapeHtml(str || '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+}
+
 function priorityClass(p) {
   return 'priority-pill ' + (p || '').toLowerCase();
 }
@@ -24,7 +34,7 @@ function fillList(el, items) {
   el.innerHTML = '';
   (items || []).forEach(item => {
     const li = document.createElement('li');
-    li.textContent = item;
+    li.innerHTML = renderText(item);
     el.appendChild(li);
   });
   if (!items || !items.length) {
@@ -38,7 +48,7 @@ function renderResult(result) {
   errorBox.style.display = 'none';
   resultBlock.style.display = 'block';
 
-  summaryBox.textContent = result.resume || '';
+  summaryBox.innerHTML = renderText(result.resume);
 
   fillList(pointsCles, result.points_cles);
   fillList(risquesList, result.risques);
@@ -47,8 +57,8 @@ function renderResult(result) {
   actionsBody.innerHTML = '';
   (result.actions || []).forEach(a => {
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${a.action || ''}</td><td>${a.responsable || ''}</td><td>${a.delai || ''}</td>
-      <td><span class="${priorityClass(a.priorite)}">${a.priorite || ''}</span></td>`;
+    tr.innerHTML = `<td>${renderText(a.action)}</td><td>${escapeHtml(a.responsable || '')}</td><td>${escapeHtml(a.delai || '')}</td>
+      <td><span class="${priorityClass(a.priorite)}">${escapeHtml(a.priorite || '')}</span></td>`;
     actionsBody.appendChild(tr);
   });
   if (!result.actions || !result.actions.length) {
