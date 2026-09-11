@@ -1,3 +1,7 @@
+const sectorSelect = document.getElementById('sectorSelect');
+const toolIcon = document.getElementById('toolIcon');
+const toolName = document.getElementById('toolName');
+const toolTagline = document.getElementById('toolTagline');
 const transcriptText = document.getElementById('transcriptText');
 const analyzeBtn = document.getElementById('analyzeBtn');
 const resultBlock = document.getElementById('resultBlock');
@@ -113,10 +117,41 @@ async function analyze() {
 
 analyzeBtn.addEventListener('click', analyze);
 
-async function init() {
-  const res = await fetch('/api/assurmeet/bootstrap');
-  const data = await res.json();
+function applySectorData(data) {
+  toolIcon.textContent = data.icon;
+  toolName.textContent = data.tool_name;
+  toolTagline.textContent = data.tagline;
+  document.title = `${data.tool_name} — AI Meeting Companion`;
   transcriptText.value = data.example_transcript || '';
+  resultBlock.style.display = 'none';
+}
+
+sectorSelect.addEventListener('change', async () => {
+  const res = await fetch('/api/assurmeet/sector', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sector: sectorSelect.value })
+  });
+  const data = await res.json();
+  if (!data.error) applySectorData(data);
+});
+
+async function init() {
+  const sectorsRes = await fetch('/api/assurmeet/sectors');
+  const sectorsData = await sectorsRes.json();
+
+  sectorSelect.innerHTML = '';
+  Object.entries(sectorsData.sectors).forEach(([id, s]) => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = `${s.icon} ${s.tool_name}`;
+    sectorSelect.appendChild(opt);
+  });
+  sectorSelect.value = sectorsData.default;
+
+  const bootstrapRes = await fetch('/api/assurmeet/bootstrap');
+  const bootstrapData = await bootstrapRes.json();
+  applySectorData(bootstrapData);
 }
 
 init();

@@ -1,0 +1,55 @@
+{
+  "_comment": "Configuration sectorielle d'AssurMeet. Le schéma de sortie (résumé, actions, sentiment, risques, promesses) reste identique quel que soit le secteur — seuls la persona du prompt et le transcript d'exemple changent.",
+  "default_sector": "assurance",
+  "sectors": {
+    "assurance": {
+      "tool_name": "AssurMeet",
+      "icon": "🛡️",
+      "tagline": "Résume un appel client assurance et en extrait les actions à suivre, sans écoute manuelle a posteriori.",
+      "persona": "compagnie d'assurance",
+      "example_transcript": "Conseiller : Bonjour Madame, je vous écoute.\nClient : Bonjour, j'appelle pour mon sinistre du 15 juillet. J'attends depuis 3 semaines et personne ne me donne de nouvelles.\nConseiller : Je comprends votre impatience Madame. Pouvez-vous me donner votre numéro de dossier ?\nClient : C'est le 2026-084521. J'ai envoyé tous les documents, le constat, les photos, le devis... Et depuis, silence radio !\nConseiller : Je vois votre dossier Madame. Il est effectivement en attente de validation par notre service expertise. Je vais faire une relance immédiate.\nClient : Ça fait 3 semaines que j'attends ! J'ai besoin de ma voiture pour aller travailler. C'est inacceptable !\nConseiller : Je comprends tout à fait. Je vous propose de vous rappeler demain avant 14h avec une réponse définitive. Est-ce que cela vous convient ?\nClient : D'accord, mais si je n'ai pas de nouvelles, je résilie mon contrat et je vais voir ailleurs.\nConseiller : Je vous garantis un retour demain Madame. Merci de votre patience."
+    },
+    "telecom": {
+      "tool_name": "TechMeet",
+      "icon": "📡",
+      "tagline": "Résume un appel client télécom et en extrait les actions à suivre.",
+      "persona": "opérateur télécom",
+      "example_transcript": "Conseiller : Bonjour Monsieur, je vous écoute.\nClient : Bonjour, ma connexion internet est coupée depuis ce matin, c'est la troisième fois ce mois-ci.\nConseiller : Je comprends votre frustration Monsieur. Je vais lancer un diagnostic à distance sur votre ligne.\nClient : Ça fait 3 fois que je dois vous appeler, je télétravaille et c'est très pénalisant.\nConseiller : Je vois effectivement une anomalie sur votre ligne. Je vais envoyer un technicien demain matin entre 8h et 10h.\nClient : D'accord, mais si ça recoupe encore je vais changer d'opérateur.\nConseiller : Je comprends, je vous propose également un geste commercial d'un mois offert pour la gêne occasionnée.\nClient : D'accord, merci, j'attends le technicien demain."
+    },
+    "fintech": {
+      "tool_name": "PayMeet",
+      "icon": "💳",
+      "tagline": "Résume un appel client fintech et en extrait les actions à suivre.",
+      "persona": "service de paiement en ligne",
+      "example_transcript": "Conseiller : Bonjour Madame, je vous écoute.\nClient : Bonjour, j'ai remarqué une transaction de 340€ que je n'ai pas faite sur mon compte hier soir.\nConseiller : Je comprends votre inquiétude Madame. Je vais bloquer votre carte immédiatement par sécurité.\nClient : Merci, mais je dois payer des factures cette semaine, comment je fais sans carte ?\nConseiller : Nous vous envoyons une nouvelle carte sous 48h, et je peux débloquer un virement ponctuel en attendant.\nClient : D'accord. Et pour la transaction frauduleuse, je serai remboursée ?\nConseiller : Oui, une enquête est ouverte, le remboursement est généralement effectué sous 10 jours ouvrés si la fraude est confirmée.\nClient : Très bien, merci pour votre réactivité."
+    },
+    "ecommerce": {
+      "tool_name": "ShopMeet",
+      "icon": "🛒",
+      "tagline": "Résume un appel client e-commerce et en extrait les actions à suivre.",
+      "persona": "site e-commerce",
+      "example_transcript": "Conseiller : Bonjour, je vous écoute.\nClient : Bonjour, j'ai reçu mon colis mais le produit est cassé, c'est un cadeau pour ce week-end.\nConseiller : Je suis désolé pour ce désagrément. Pouvez-vous m'envoyer une photo du produit endommagé ?\nClient : Je viens de vous l'envoyer par email. J'ai besoin d'une solution rapide, c'est urgent.\nConseiller : Je vois la photo, effectivement l'article est endommagé. Je vous renvoie un article neuf en livraison express, sans attendre le retour.\nClient : Ça sera livré avant samedi ?\nConseiller : Oui, la livraison express est prévue demain avant midi.\nClient : Parfait, merci beaucoup pour votre réactivité."
+    },
+    "automobile": {
+      "tool_name": "AutoMeet",
+      "icon": "🚗",
+      "tagline": "Résume un appel client automobile et en extrait les actions à suivre.",
+      "persona": "constructeur automobile",
+      "example_transcript": "Conseiller : Bonjour Monsieur, je vous écoute.\nClient : Bonjour, le voyant moteur de mon véhicule s'est allumé ce matin, la voiture a 3 mois.\nConseiller : Je comprends votre inquiétude. Le véhicule roule-t-il normalement malgré le voyant ?\nClient : Oui, pas de bruit anormal, mais je ne veux pas prendre de risque.\nConseiller : Je vous recommande de prendre rendez-vous avec le concessionnaire le plus proche sous 48h, le diagnostic est couvert par la garantie.\nClient : D'accord. Et si le problème est grave, la réparation sera prise en charge ?\nConseiller : Oui, votre véhicule est sous garantie constructeur, toute réparation liée sera prise en charge intégralement.\nClient : Très bien, je prends rendez-vous dès aujourd'hui."
+    },
+    "edtech": {
+      "tool_name": "LearnMeet",
+      "icon": "🎓",
+      "tagline": "Résume un appel d'apprenant et en extrait les actions à suivre.",
+      "persona": "plateforme de formation en ligne",
+      "example_transcript": "Conseiller : Bonjour, je vous écoute.\nClient : Bonjour, je n'arrive plus à accéder à mon module final depuis hier, et mon examen est dans 2 jours.\nConseiller : Je comprends l'urgence. Pouvez-vous me confirmer votre email d'inscription ?\nClient : Oui, c'est celui que j'utilise pour me connecter habituellement.\nConseiller : Je vois le souci, votre accès a expiré par erreur. Je le réactive immédiatement.\nClient : Merci, et pour l'examen, j'aurai bien le temps de le repasser si besoin ?\nConseiller : Oui, je vous accorde 48h supplémentaires pour compenser l'interruption.\nClient : Parfait, merci beaucoup pour votre réactivité."
+    },
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoMeet",
+      "icon": "🦿",
+      "tagline": "Résume un appel patient et en extrait les actions à suivre.",
+      "persona": "service après-vente d'attelles orthopédiques",
+      "example_transcript": "Conseiller : Bonjour Madame, je vous écoute.\nClient : Bonjour, mon chirurgien m'a dit qu'il vous enverrait mon ordonnance il y a une semaine, mais personne ne m'a rappelée.\nConseiller : Je vérifie votre dossier tout de suite. Effectivement, l'ordonnance a été reçue mais votre mutuelle n'a pas encore été renseignée.\nClient : Ah, personne ne me l'a demandé. Mon opération est dans 4 jours, j'ai besoin de mon attelle avant.\nConseiller : Je comprends l'urgence. Je prends vos informations de Sécurité Sociale et de mutuelle maintenant, et nous expédions votre attelle dès aujourd'hui en envoi prioritaire.\nClient : Elle arrivera avant mon opération alors ?\nConseiller : Oui, vous devriez la recevoir sous 48h, largement avant votre opération.\nClient : Merci beaucoup, je suis rassurée."
+    }
+  }
+}

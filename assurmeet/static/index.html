@@ -3,24 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AssurMeet — AI Meeting Companion</title>
+<title>AssurMeet — AI Meeting Companion multi-secteur</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
 <div class="topbar">
-  <div class="brand"><span class="mark"></span>AssurMeet</div>
+  <div class="brand"><span class="mark"></span><span id="toolIcon">🛡️</span> <span id="toolName">AssurMeet</span></div>
   <div class="meta">POC — Wajih Jemli</div>
 </div>
 
 <div class="hero">
   <h1>Écouter 100% des appels, sans en écouter un seul</h1>
-  <p>Collez un transcript d'appel client. AssurMeet en extrait le résumé, les actions à suivre, le sentiment client et les risques — instantanément.</p>
+  <p id="toolTagline">Résume un appel client assurance et en extrait les actions à suivre, sans écoute manuelle a posteriori.</p>
 </div>
 
 <div class="layout">
 
   <div class="workbench">
+    <label class="field-label">Secteur</label>
+    <select id="sectorSelect"></select>
+
+    <hr class="divider">
+
     <label class="field-label">Transcript de l'appel</label>
     <textarea id="transcriptText" style="min-height:220px;" placeholder="Collez ici le transcript de l'appel..."></textarea>
 
@@ -75,7 +80,7 @@
 
 </div>
 
-<div class="footer-note"><b>AssurMeet</b> — POC développé par Wajih Jemli</div>
+<div class="footer-note"><b>AssurMeet</b> — POC développé par Wajih Jemli | Multi-secteur</div>
 
 <script src="/static/app.js"></script>
 </body>
