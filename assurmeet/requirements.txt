@@ -1,4 +1,4 @@
-# 06_meeting_companion / AssurMeet — AI Meeting Companion Analyse Appels
-# Moteur IA (via API compatible OpenAI)
-streamlit>=1.28.0
+# assurmeet — FastAPI + moteur IA (analyse d'appel)
+fastapi>=0.110.0
+uvicorn>=0.29.0
 openai>=1.30.0
