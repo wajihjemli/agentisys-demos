@@ -3,29 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AssurBot — Assistant virtuel assurance</title>
+<title>AssurBot — Assistant conversationnel multi-secteur</title>
 <link rel="stylesheet" href="/assurbot/static/style.css">
 </head>
 <body>
 
 <div class="topbar">
-  <div class="brand"><span class="mark"></span>AssurBot</div>
+  <div class="brand"><span class="mark"></span><span id="toolIcon">🛡️</span> <span id="toolName">AssurBot</span></div>
   <div class="meta">POC — Wajih Jemli</div>
 </div>
 
 <div class="hero">
-  <h1>Poser une question d'assurance, obtenir une réponse fiable</h1>
-  <p>AssurBot recherche dans la FAQ interne, puis reformule la réponse — sans jamais inventer d'information hors de sa base de connaissances.</p>
+  <h1>Un bot, sept secteurs — la même logique, une base différente</h1>
+  <p id="toolTagline">Répond aux questions fréquentes des assurés sans mobiliser un conseiller.</p>
 </div>
 
 <div class="layout">
 
   <div class="workbench">
+    <label class="field-label">Secteur du bot</label>
+    <select id="sectorSelect"></select>
+
+    <hr class="divider">
+
     <label class="field-label">Conversation</label>
     <div class="chat-log" id="chatLog"></div>
 
     <div class="chat-input-row">
-      <textarea id="chatInput" placeholder="Posez votre question sur votre assurance..." rows="1"></textarea>
+      <textarea id="chatInput" placeholder="Posez votre question..." rows="1"></textarea>
       <button class="btn-primary" id="sendBtn">Envoyer</button>
     </div>
   </div>
@@ -35,7 +40,7 @@
       <h3>À propos</h3>
       <ul class="info-list">
         <li><span>Technologie</span><b>RAG</b></li>
-        <li><span>Base</span><b>FAQ assurance</b></li>
+        <li><span>Base</span><b id="contextLabel">FAQ assurance</b></li>
         <li><span>Garantie</span><b>Pas d'hallucination</b></li>
       </ul>
     </div>
@@ -48,7 +53,7 @@
 
 </div>
 
-<div class="footer-note"><b>AssurBot</b> — POC développé par Wajih Jemli | RAG</div>
+<div class="footer-note"><b>AssurBot</b> — POC développé par Wajih Jemli | RAG multi-secteur</div>
 
 <script src="/assurbot/static/app.js"></script>
 </body>

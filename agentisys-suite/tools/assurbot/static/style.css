@@ -279,6 +279,20 @@ textarea:focus, input:focus { outline: 2px solid var(--gold); outline-offset: 1p
 
 /* ===== Chat (AssurBot) ===== */
 
+select {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  padding: 12px 14px;
+}
+select:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+
+.topbar .brand #toolIcon { font-size: 1.1rem; }
+
 .chat-log {
   display: flex;
   flex-direction: column;

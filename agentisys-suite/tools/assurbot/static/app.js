@@ -1,3 +1,8 @@
+const sectorSelect = document.getElementById('sectorSelect');
+const toolIcon = document.getElementById('toolIcon');
+const toolName = document.getElementById('toolName');
+const toolTagline = document.getElementById('toolTagline');
+const contextLabel = document.getElementById('contextLabel');
 const chatLog = document.getElementById('chatLog');
 const chatInput = document.getElementById('chatInput');
 const sendBtn = document.getElementById('sendBtn');
@@ -61,7 +66,7 @@ function renderTyping() {
   wrap.id = 'typingIndicator';
   const bubble = document.createElement('div');
   bubble.className = 'msg-bubble typing';
-  bubble.textContent = 'AssurBot rédige une réponse...';
+  bubble.textContent = `${toolName.textContent} rédige une réponse...`;
   wrap.appendChild(bubble);
   chatLog.appendChild(wrap);
   chatLog.scrollTop = chatLog.scrollHeight;
@@ -105,11 +110,18 @@ chatInput.addEventListener('keydown', (e) => {
   }
 });
 
-async function init() {
-  const res = await fetch('/api/assurbot/bootstrap');
-  const data = await res.json();
+function applySectorData(data) {
+  toolIcon.textContent = data.icon;
+  toolName.textContent = data.tool_name;
+  toolTagline.textContent = data.tagline;
+  contextLabel.textContent = data.field_labels.context;
+  chatInput.placeholder = data.field_labels.input + '...';
+  document.title = `${data.tool_name} — Assistant conversationnel`;
+
+  chatLog.innerHTML = '';
   renderAssistantMessage({ answer: data.welcome, sources: [], mode: 'ai' });
 
+  examplesList.innerHTML = '';
   data.examples.forEach(ex => {
     const chip = document.createElement('button');
     chip.className = 'example-chip';
@@ -117,6 +129,34 @@ async function init() {
     chip.addEventListener('click', () => sendMessage(ex));
     examplesList.appendChild(chip);
   });
+}
+
+sectorSelect.addEventListener('change', async () => {
+  const res = await fetch('/api/assurbot/sector', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ sector: sectorSelect.value })
+  });
+  const data = await res.json();
+  if (!data.error) applySectorData(data);
+});
+
+async function init() {
+  const sectorsRes = await fetch('/api/assurbot/sectors');
+  const sectorsData = await sectorsRes.json();
+
+  sectorSelect.innerHTML = '';
+  Object.entries(sectorsData.sectors).forEach(([id, s]) => {
+    const opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = `${s.icon} ${s.tool_name}`;
+    sectorSelect.appendChild(opt);
+  });
+  sectorSelect.value = sectorsData.default;
+
+  const bootstrapRes = await fetch('/api/assurbot/bootstrap');
+  const bootstrapData = await bootstrapRes.json();
+  applySectorData(bootstrapData);
 }
 
 init();
