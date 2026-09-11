@@ -4,11 +4,14 @@ Répond aux questions sur un document (conditions générales, procédure, docum
 
 Interface FastAPI + HTML/CSS/JS (design system `agentisys-demos`), pas de framework front.
 
-## Fonctionnement
+## Fonctionnement — vrai pipeline RAG
 
-Le document et la question envoyés à `/api/ask` sont injectés dans un prompt qui contraint le moteur IA à répondre uniquement à partir du texte fourni, et à l'admettre explicitement si l'information n'y figure pas.
+1. **Chunking** — le document collé est découpé en sections (paragraphes séparés par une ligne vide).
+2. **Retrieval** — la question est comparée à chaque section par similarité cosinus TF-IDF ; seules les sections dont le score dépasse un seuil absolu et un seuil relatif au meilleur score sont conservées (évite de garder des sections faiblement pertinentes juste parce qu'elles partagent du vocabulaire commun avec les autres, comme "franchise" ou "plafond").
+3. **Generation** — seules les sections retenues (pas le document entier) sont injectées dans le prompt envoyé au moteur IA, qui doit répondre uniquement à partir de ces extraits.
+4. Les sections effectivement utilisées, avec leur score de similarité, sont affichées dans un panneau "Sections utilisées" pour vérifier ce qui a réellement nourri la réponse.
 
-En production, le document serait découpé en chunks et indexé dans une base vectorielle (FAISS/Pinecone) pour ne récupérer que les passages pertinents ; cette démo envoie le document entier tel quel.
+En production, on remplacerait le TF-IDF (recherche par mots-clés pondérés) par des embeddings sémantiques et une base vectorielle (FAISS/Pinecone), plus robustes aux questions reformulées avec un vocabulaire différent du document.
 
 ## Lancer en local
 

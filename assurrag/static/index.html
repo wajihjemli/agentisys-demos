@@ -32,8 +32,15 @@
     </div>
 
     <div class="answer-box" id="answerBox" style="display:none;"></div>
+
+    <details class="sources-details" id="sourcesDetails" style="display:none;">
+      <summary id="sourcesSummary">Sections utilisées</summary>
+      <div id="sourcesList"></div>
+    </details>
+
     <div class="note-box">
-      <b>En production</b>, le document serait découpé en chunks, indexé dans une base vectorielle (FAISS/Pinecone), et le système récupérerait automatiquement les passages pertinents avant de générer la réponse.
+      Retrieval par similarité TF-IDF (recherche par mots-clés pondérés) sur les sections du document ci-dessus.
+      <b>En production</b>, on utiliserait des embeddings sémantiques et une base vectorielle (FAISS/Pinecone) pour une recherche plus fine que la simple correspondance de mots.
     </div>
     <div id="errorBox" style="display:none; margin-top:16px; color:var(--red); font-size:0.9rem;"></div>
   </div>

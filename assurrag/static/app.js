@@ -3,6 +3,9 @@ const questionInput = document.getElementById('questionInput');
 const askBtn = document.getElementById('askBtn');
 const answerBox = document.getElementById('answerBox');
 const errorBox = document.getElementById('errorBox');
+const sourcesDetails = document.getElementById('sourcesDetails');
+const sourcesSummary = document.getElementById('sourcesSummary');
+const sourcesList = document.getElementById('sourcesList');
 
 function escapeHtml(str) {
   const div = document.createElement('div');
@@ -23,6 +26,7 @@ async function ask() {
   askBtn.textContent = 'Recherche en cours...';
   errorBox.style.display = 'none';
   answerBox.style.display = 'none';
+  sourcesDetails.style.display = 'none';
 
   try {
     const res = await fetch('/api/ask', {
@@ -37,6 +41,18 @@ async function ask() {
     } else {
       answerBox.style.display = 'block';
       answerBox.innerHTML = renderAnswer(data.answer);
+
+      if (data.sources && data.sources.length) {
+        sourcesDetails.style.display = 'block';
+        sourcesSummary.textContent = `${data.sources.length} section(s) utilisée(s) sur ${data.chunks_total} au total`;
+        sourcesList.innerHTML = '';
+        data.sources.forEach(s => {
+          const item = document.createElement('div');
+          item.className = 'source-item';
+          item.innerHTML = `<span class="score">similarité ${s.score}</span>${escapeHtml(s.excerpt)}`;
+          sourcesList.appendChild(item);
+        });
+      }
     }
   } catch (err) {
     errorBox.style.display = 'block';
