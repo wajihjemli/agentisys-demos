@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SentiClaim — Analyse de sentiment</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand"><span class="mark"></span>SentiClaim</div>
+  <div class="meta">POC — Wajih Jemli</div>
+</div>
+
+<div class="hero">
+  <h1>Détecter l'urgence dans une réclamation avant qu'elle n'échappe</h1>
+  <p>Sentiment, intensité émotionnelle, urgence et catégorie métier, en un appel — avec l'action recommandée pour le conseiller.</p>
+</div>
+
+<div class="layout">
+
+  <div class="workbench">
+    <label class="field-label">Réclamation à analyser</label>
+    <select id="exampleSelect">
+      <option value="">-- Écrire manuellement --</option>
+    </select>
+    <textarea id="claimText" placeholder="Collez ici le texte de la réclamation..."></textarea>
+
+    <div style="margin-top:20px;">
+      <button class="btn-primary" id="analyzeBtn">Analyser le sentiment</button>
+    </div>
+
+    <div id="resultBlock" style="display:none;">
+      <div class="metric-row" id="metricRow"></div>
+      <div class="quote-box" id="quoteBox"></div>
+      <div class="tag-row" id="tagRow"></div>
+      <div class="action-callout" id="actionCallout"></div>
+      <div class="mode-flag" id="modeFlag" style="display:none;"></div>
+    </div>
+  </div>
+
+  <div class="rail">
+    <div class="rail-card">
+      <h3>À propos</h3>
+      <ul class="info-list">
+        <li><span>Détecte</span><b>Sentiment, urgence</b></li>
+        <li><span>Catégorise</span><b>6 familles métier</b></li>
+        <li><span>Recommande</span><b>Action + délai</b></li>
+      </ul>
+    </div>
+
+    <div class="rail-card">
+      <h3>Aperçu rapide (hors-ligne)</h3>
+      <div id="quickScan"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note"><b>SentiClaim</b> — POC développé par Wajih Jemli</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
