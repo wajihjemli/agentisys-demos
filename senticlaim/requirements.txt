@@ -1,0 +1,4 @@
+# 02_analyse_sentiment / SentiClaim — Analyse de Sentiment Réclamations Assurance
+# Streamlit + génération via API compatible OpenAI (Groq), avec repli lexical hors-ligne
+streamlit>=1.28.0
+openai>=1.30.0
