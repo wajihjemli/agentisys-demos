@@ -6,10 +6,10 @@ Q: J'ai reçu mon attelle à l'hôpital, que se passe-t-il maintenant ?
 R: Votre ordonnance et votre consentement ont été enregistrés dans notre système. Si vos informations Sécurité Sociale et mutuelle sont complètes, la demande de paiement est envoyée électroniquement via notre outil Pulse — vous n'avez rien à faire de plus.
 
 Q: On m'a dit que vous alliez me rappeler, pourquoi je n'ai pas de nouvelles ?
-R: Dans la majorité des cas où l'attelle a été remise directement à l'hôpital, nous ne recontactons le patient que si des informations Sécurité Sociale ou mutuelle manquent au dossier. Sans appel de notre part, cela signifie généralement que votre dossier est complet et en cours de traitement.
+R: Dans la majorité des cas où l'attelle a été remise directement à l'hôpital, nous ne recontactons le patient que si des informations Sécurité Sociale ou mutuelle manquent au dossier.
 
 Q: Comment savoir si ma demande de remboursement a été envoyée ?
-R: Une fois votre ordonnance, votre consentement et vos informations de couverture (Sécurité Sociale + mutuelle) saisis dans notre CRM, la demande est transmise électroniquement via Pulse. Le délai de traitement dépend ensuite de votre caisse et de votre mutuelle.
+R: Une fois votre ordonnance, votre consentement et vos informations de couverture saisis dans notre CRM, la demande est transmise électroniquement via Pulse.
 
 Q: Je n'ai pas donné mes informations de mutuelle, que dois-je faire ?
 R: Vous pouvez nous les communiquer directement — c'est la seule situation où nous recontactons un patient ayant déjà reçu son attelle à l'hôpital.
@@ -20,7 +20,7 @@ Q: Mon chirurgien a dit qu'il vous enverrait mon ordonnance, et ensuite ?
 R: Dès réception de l'ordonnance et du consentement transmis par votre chirurgien, nous les saisissons dans notre système, puis nous vous appelons pour recueillir votre Sécurité Sociale, votre mutuelle, et vérifier s'il existe un dépassement à régler par carte bancaire.
 
 Q: Qu'est-ce qu'un "dépassement" et pourquoi dois-je payer ?
-R: C'est la part du coût de l'attelle qui n'est pas couverte par votre Sécurité Sociale et votre mutuelle. S'il y en a un, nous vous le communiquons lors de l'appel et le règlement se fait par carte bancaire.
+R: C'est la part du coût de l'attelle qui n'est pas couverte par votre Sécurité Sociale et votre mutuelle.
 
 Q: Quand vais-je recevoir mon attelle ?
 R: Une fois vos informations de couverture recueillies et un éventuel dépassement réglé, l'attelle est envoyée directement à votre domicile, avant votre opération.
@@ -29,15 +29,15 @@ Q: Dois-je apporter l'attelle à l'hôpital ?
 R: Oui — dans ce parcours, l'attelle vous est envoyée chez vous à l'avance, et vous devez l'apporter avec vous le jour de votre opération.
 
 Q: Je n'ai pas encore été appelé alors que mon chirurgien a dit avoir envoyé l'ordonnance, est-ce normal ?
-R: Le CRM montrera si l'ordonnance et le consentement ont bien été reçus et saisis. Si c'est le cas, l'appel pour recueillir vos informations suit généralement sous quelques jours.
+R: Le CRM montrera si l'ordonnance et le consentement ont bien été reçus et saisis.
 
 --- QUESTIONS GÉNÉRALES ---
 
 Q: Quels documents sont nécessaires dans tous les cas ?
-R: Une ordonnance et un consentement signé, dans les deux parcours. Le moment où on vous demande vos informations Sécurité Sociale/mutuelle diffère selon que vous avez déjà reçu l'attelle (hôpital) ou non (chirurgien).
+R: Une ordonnance et un consentement signé, dans les deux parcours.
 
 Q: Puis-je avoir mal ou ressentir une gêne avec l'attelle ?
-R: Je ne peux pas donner d'avis médical ou clinique. Pour toute question sur la douleur, le port ou le retrait de l'attelle, merci de contacter votre chirurgien ou un professionnel de santé.
+R: Je ne peux pas donner d'avis médical ou clinique. Contactez votre chirurgien ou un professionnel de santé.
 
 Q: Comment savoir dans quel parcours se trouve mon dossier ?
-R: Si vous avez déjà reçu votre attelle avant tout appel de notre part, vous êtes très probablement dans le parcours hôpital. Si vous attendez encore de recevoir votre attelle avant une opération à venir, vous êtes dans le parcours chirurgien.
+R: Si vous avez déjà reçu votre attelle avant tout appel de notre part, vous êtes dans le parcours hôpital. Sinon, vous êtes dans le parcours chirurgien.

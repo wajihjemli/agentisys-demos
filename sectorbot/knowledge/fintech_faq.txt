@@ -1,0 +1,23 @@
+BASE DE CONNAISSANCES — PayBot (Paiement en ligne / Fintech)
+[Contenu illustratif pour démonstration — à remplacer par des données réelles d'un client]
+
+Q: Un paiement ne s'est pas effectué, pourquoi ?
+R: Solde insuffisant, carte expirée, plafond atteint, ou blocage de sécurité.
+
+Q: J'ai été débité deux fois pour le même achat, que faire ?
+R: Signalez la transaction en double depuis votre historique de paiements.
+
+Q: Comment sécuriser mon compte si je pense qu'il a été piraté ?
+R: Changez immédiatement votre mot de passe et activez la double authentification.
+
+Q: Quel est le délai pour recevoir un remboursement ?
+R: Entre 3 et 10 jours ouvrés selon votre banque.
+
+Q: Comment vérifier mon identité pour débloquer mon compte ?
+R: Un document d'identité et un justificatif de domicile sont demandés.
+
+Q: Puis-je annuler un paiement récurrent ?
+R: Oui, depuis la section "Paiements automatiques" de votre compte.
+
+Q: Que faire si je ne reconnais pas une transaction ?
+R: Signalez-la immédiatement comme frauduleuse.

@@ -1,0 +1,23 @@
+BASE DE CONNAISSANCES — ShopBot (E-commerce)
+[Contenu illustratif pour démonstration — à remplacer par des données réelles d'un client]
+
+Q: Où en est ma commande ?
+R: Le statut est visible dans votre espace "Mes commandes", avec un numéro de suivi dès l'expédition.
+
+Q: Comment retourner un article qui ne convient pas ?
+R: Vous disposez de 14 jours après réception pour initier un retour depuis votre compte.
+
+Q: Quand serai-je remboursé après un retour ?
+R: Sous 5 à 14 jours ouvrés après réception et contrôle de l'article.
+
+Q: Mon colis est marqué "livré" mais je ne l'ai pas reçu, que faire ?
+R: Vérifiez auprès de vos voisins ou du point relais, puis signalez le colis manquant.
+
+Q: Puis-je modifier l'adresse de livraison après validation ?
+R: Uniquement si la commande n'est pas encore en préparation.
+
+Q: L'article reçu est différent de celui commandé, que faire ?
+R: Signalez une non-conformité, un retour gratuit est organisé.
+
+Q: Comment utiliser un code promo qui ne fonctionne pas ?
+R: Vérifiez la date de validité et les conditions d'application.

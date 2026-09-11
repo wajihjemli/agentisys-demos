@@ -1,0 +1,20 @@
+BASE DE CONNAISSANCES — AutoBot (Automobile / Systèmes embarqués)
+[Contenu illustratif pour démonstration — à remplacer par des données réelles d'un client]
+
+Q: Le GPS n'affiche plus les bonnes cartes, que faire ?
+R: Une mise à jour des cartes est probablement disponible via le port USB ou l'application constructeur.
+
+Q: Comment connecter mon téléphone en Bluetooth ?
+R: Depuis le menu "Connectivité" de l'écran embarqué.
+
+Q: Un voyant s'est allumé sur mon tableau de bord, est-ce grave ?
+R: Cela dépend du voyant. Je ne peux pas donner de diagnostic mécanique — contactez le réseau agréé.
+
+Q: L'application mobile ne se synchronise plus, que faire ?
+R: Vérifiez votre connexion internet et reconnectez-vous à l'application.
+
+Q: Comment mettre à jour le logiciel embarqué ?
+R: Certains modèles reçoivent les mises à jour à distance automatiquement.
+
+Q: Que faire si mon véhicule ne démarre plus ?
+R: Je ne traite pas les pannes mécaniques — contactez l'assistance dépannage.
