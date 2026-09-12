@@ -1,0 +1,62 @@
+{
+  "_comment": "Configuration sectorielle d'AssurVision. Le pipeline (analyse vision IA en 8 points structurés, détection anglais + retraduction automatique, extraction de la gravité) reste identique quel que soit le secteur — seuls la persona experte et le type de photo analysée changent.",
+  "default_sector": "assurance",
+  "sectors": {
+    "assurance": {
+      "tool_name": "AssurVision",
+      "icon": "🛡️",
+      "tagline": "Estime la gravité d'un sinistre automobile à partir d'une simple photo, pour accélérer le premier diagnostic avant expertise.",
+      "persona": "expert en assurance automobile",
+      "item_label": "photo de sinistre automobile",
+      "upload_label": "Photo du sinistre"
+    },
+    "telecom": {
+      "tool_name": "TechVision",
+      "icon": "📡",
+      "tagline": "Estime la gravité d'un équipement télécom endommagé à partir d'une simple photo, pour accélérer le diagnostic avant intervention.",
+      "persona": "expert technique télécom",
+      "item_label": "photo d'un équipement télécom endommagé (box, routeur, téléphone)",
+      "upload_label": "Photo de l'équipement"
+    },
+    "fintech": {
+      "tool_name": "PayVision",
+      "icon": "💳",
+      "tagline": "Estime la gravité d'un équipement de paiement endommagé à partir d'une simple photo, pour accélérer le diagnostic avant remplacement.",
+      "persona": "expert en équipements de paiement",
+      "item_label": "photo d'un terminal de paiement ou d'une carte bancaire endommagée",
+      "upload_label": "Photo de l'équipement"
+    },
+    "ecommerce": {
+      "tool_name": "ShopVision",
+      "icon": "🛒",
+      "tagline": "Estime la gravité d'un produit reçu endommagé à partir d'une simple photo, pour accélérer le traitement du retour ou de l'échange.",
+      "persona": "expert qualité e-commerce",
+      "item_label": "photo d'un produit reçu endommagé",
+      "upload_label": "Photo du produit"
+    },
+    "automobile": {
+      "tool_name": "AutoVision",
+      "icon": "🚗",
+      "tagline": "Estime la gravité d'un dommage ou d'une panne visible à partir d'une simple photo, pour accélérer le diagnostic avant prise en charge garantie.",
+      "persona": "expert technique constructeur automobile",
+      "item_label": "photo d'un véhicule endommagé ou d'une panne visible",
+      "upload_label": "Photo du véhicule"
+    },
+    "edtech": {
+      "tool_name": "LearnVision",
+      "icon": "🎓",
+      "tagline": "Estime la gravité d'un équipement pédagogique endommagé à partir d'une simple photo, pour accélérer son remplacement.",
+      "persona": "expert qualité pédagogique",
+      "item_label": "photo d'un kit ou équipement pédagogique endommagé",
+      "upload_label": "Photo de l'équipement"
+    },
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoVision",
+      "icon": "🦿",
+      "tagline": "Estime la gravité d'un dispositif médical endommagé à partir d'une simple photo, pour accélérer son remplacement avant une intervention.",
+      "persona": "expert en dispositifs médicaux orthopédiques",
+      "item_label": "photo d'une attelle ou d'un dispositif orthopédique endommagé",
+      "upload_label": "Photo du dispositif"
+    }
+  }
+}

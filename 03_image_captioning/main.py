@@ -14,11 +14,14 @@ import re
 from pathlib import Path
 
 import openai
-from fastapi import APIRouter, File, UploadFile
+from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from PIL import Image
 from pydantic import BaseModel
 
-router = APIRouter()
+app = FastAPI(title="AssurVision")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 client = openai.OpenAI(api_key=GROQ_API_KEY, base_url="https://api.groq.com/openai/v1") if GROQ_API_KEY else None
@@ -28,9 +31,9 @@ TRANSLATE_MODEL = "openai/gpt-oss-20b"
 
 SEVERITES = ["Légère", "Modérée", "Élevée", "Totale"]
 
-# sectorbot/ vit à la racine du repo, en frère de agentisys-suite/ — nécessite que le
-# repo entier soit cloné ensemble (ce n'est pas un microservice isolé).
-SECTORBOT_DIR = Path(__file__).parent.parent.parent.parent / "sectorbot"
+# sectorbot/ vit à la racine du repo, en frère de ce dossier — nécessite que le repo
+# entier soit cloné ensemble (ce n'est pas un microservice isolé).
+SECTORBOT_DIR = Path(__file__).parent.parent / "sectorbot"
 
 with open(SECTORBOT_DIR / "assurvision.config.json", "r", encoding="utf-8") as f:
     _config = json.load(f)
@@ -78,7 +81,12 @@ def build_analysis_user_prompt(sector_id: str) -> str:
     )
 
 
-@router.get("/sectors")
+@app.get("/")
+def index():
+    return FileResponse("static/index.html")
+
+
+@app.get("/api/sectors")
 def list_sectors():
     return {
         "sectors": {sid: {"tool_name": c["tool_name"], "icon": c["icon"], "tagline": c["tagline"]} for sid, c in SECTORS.items()},
@@ -90,7 +98,7 @@ class SectorRequest(BaseModel):
     sector: str
 
 
-@router.post("/sector")
+@app.post("/api/sector")
 def set_sector(req: SectorRequest):
     global current_sector
     if req.sector not in SECTORS:
@@ -110,7 +118,7 @@ def sector_payload(sector_id: str) -> dict:
     }
 
 
-@router.get("/bootstrap")
+@app.get("/api/bootstrap")
 def bootstrap():
     return sector_payload(current_sector)
 
@@ -203,7 +211,7 @@ def extract_severity(text: str) -> str | None:
     return None
 
 
-@router.post("/analyze")
+@app.post("/api/analyze")
 async def analyze(file: UploadFile = File(...)):
     if not client:
         return {"error": "Clé API Groq manquante. Configurez GROQ_API_KEY pour utiliser AssurVision."}
