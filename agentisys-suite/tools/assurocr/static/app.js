@@ -1,3 +1,6 @@
+const hubNavBtn = document.getElementById('hubNavBtn');
+const hubNavMenu = document.getElementById('hubNavMenu');
+const hubNavList = document.getElementById('hubNavList');
 const sectorSelect = document.getElementById('sectorSelect');
 const toolIcon = document.getElementById('toolIcon');
 const toolName = document.getElementById('toolName');
@@ -146,3 +149,33 @@ async function init() {
 }
 
 init();
+
+hubNavBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  hubNavMenu.classList.toggle('open');
+});
+document.addEventListener('click', (e) => {
+  if (!hubNavMenu.contains(e.target) && e.target !== hubNavBtn) {
+    hubNavMenu.classList.remove('open');
+  }
+});
+
+async function loadHubNav() {
+  try {
+    const res = await fetch('/api/hub/tools');
+    const data = await res.json();
+    const currentSlug = window.location.pathname.slice(1);
+    hubNavList.innerHTML = '';
+    data.tools.forEach(t => {
+      const a = document.createElement('a');
+      a.className = 'hub-nav-item' + (t.slug === currentSlug ? ' active' : '');
+      a.href = `/${t.slug}`;
+      a.innerHTML = `<span>${t.icon}</span><span>${t.name}</span>`;
+      hubNavList.appendChild(a);
+    });
+  } catch (err) {
+    // Silencieux : le menu reste utilisable via le lien Accueil même si la liste ne charge pas.
+  }
+}
+
+loadHubNav();
