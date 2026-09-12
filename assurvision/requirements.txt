@@ -1,6 +1,0 @@
-# assurvision — FastAPI + moteur IA vision (Groq)
-fastapi>=0.110.0
-uvicorn>=0.29.0
-openai>=1.30.0
-Pillow>=10.0.0
-python-multipart>=0.0.9

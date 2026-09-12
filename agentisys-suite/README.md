@@ -2,14 +2,14 @@
 
 Point d'entrée unique regroupant les 8 démonstrateurs IA du portfolio (AssurBot, SentiClaim, AssurOCR, AssurMeet, AssurRAG, AssurTranslate, AssurVision, AssurVoice), pour n'avoir qu'une seule application à partager plutôt que 8 apps séparées.
 
-Chaque outil reste un module indépendant (`tools/<outil>/router.py`) : il pourrait être re-séparé en service distinct plus tard sans réécrire sa logique métier, qui est identique à sa version autonome dans les autres dossiers de ce repo.
+Chaque outil reste un module indépendant (`tools/<outil>/router.py`) : il pourrait être re-séparé en service distinct plus tard sans réécrire sa logique métier.
 
 ## Structure
 
 ```
-/                     -> hub (choix de l'outil)
-/<outil>              -> page de l'outil, ex: /assurbot
-/api/<outil>/...      -> API de l'outil, ex: /api/assurbot/chat
+/                       -> hub (choix de l'outil)
+/<outil>                -> page de l'outil, ex: /assurbot
+/api/<outil>/...        -> API de l'outil, ex: /api/assurbot/chat
 ```
 
 ## Lancer en local

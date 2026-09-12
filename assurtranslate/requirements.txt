@@ -1,5 +1,0 @@
-# assurtranslate — FastAPI + moteur IA (traduction) + gTTS (audio)
-fastapi>=0.110.0
-uvicorn>=0.29.0
-openai>=1.30.0
-gTTS>=2.4.0

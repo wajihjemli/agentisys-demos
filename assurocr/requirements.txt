@@ -1,8 +1,0 @@
-# assurocr — FastAPI + Tesseract OCR + Moteur IA (structuration)
-# Nécessite Tesseract installé sur le système (apt install tesseract-ocr tesseract-ocr-fra)
-fastapi>=0.110.0
-uvicorn>=0.29.0
-pytesseract>=0.3.10
-Pillow>=10.0.0
-openai>=1.30.0
-python-multipart>=0.0.9
