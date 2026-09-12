@@ -18,3 +18,5 @@ Portfolio de démonstrateurs IA pour la relation client assurance — Wajih Jeml
 `sectorbot/` contient la configuration multi-secteur (prompts, libellés, base de connaissances) partagée par les 8 outils du hub — c'est une dépendance requise, pas un dossier annexe.
 
 Chaque outil est construit sur le même design system, utilisant Groq comme unique fournisseur IA. Voir [`agentisys-suite/README.md`](agentisys-suite/README.md) pour le lancer en local. Preuves de concept liées à AgentiSys.
+
+Développé avec l'assistance de [Claude Code](https://claude.com/claude-code).
