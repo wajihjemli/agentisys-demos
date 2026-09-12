@@ -31,8 +31,14 @@ from tools.assurvision.router import router as assurvision_router
 from tools.assurvoice.router import router as assurvoice_router
 
 TOOLS = [
-    "assurbot", "senticlaim", "assurocr", "assurmeet",
-    "assurrag", "assurtranslate", "assurvision", "assurvoice",
+    {"slug": "assurbot", "name": "AssurBot", "icon": "💬"},
+    {"slug": "senticlaim", "name": "SentiClaim", "icon": "📊"},
+    {"slug": "assurocr", "name": "AssurOCR", "icon": "📄"},
+    {"slug": "assurmeet", "name": "AssurMeet", "icon": "📞"},
+    {"slug": "assurrag", "name": "AssurRAG", "icon": "📚"},
+    {"slug": "assurtranslate", "name": "AssurTranslate", "icon": "🌍"},
+    {"slug": "assurvision", "name": "AssurVision", "icon": "📸"},
+    {"slug": "assurvoice", "name": "AssurVoice", "icon": "🎤"},
 ]
 
 app = FastAPI(title="AgentiSys Suite")
@@ -47,13 +53,21 @@ app.include_router(assurvision_router, prefix="/api/assurvision", tags=["AssurVi
 app.include_router(assurvoice_router, prefix="/api/assurvoice", tags=["AssurVoice"])
 
 app.mount("/static", StaticFiles(directory="static"), name="hub-static")
-for slug in TOOLS:
-    app.mount(f"/{slug}/static", StaticFiles(directory=f"tools/{slug}/static"), name=f"{slug}-static")
+for tool in TOOLS:
+    app.mount(f"/{tool['slug']}/static", StaticFiles(directory=f"tools/{tool['slug']}/static"), name=f"{tool['slug']}-static")
 
 
 @app.get("/")
 def hub():
     return FileResponse("static/index.html")
+
+
+@app.get("/api/hub/tools")
+def hub_tools():
+    """Liste canonique des 8 outils (nom et icône de la carte d'accueil, pas du secteur actif) —
+    utilisée par le menu de navigation présent dans chaque outil pour permettre de changer
+    d'outil ou de revenir à l'accueil sans perdre le fil de la démonstration."""
+    return {"tools": TOOLS}
 
 
 def _make_tool_page(slug: str):
@@ -62,5 +76,5 @@ def _make_tool_page(slug: str):
     return page
 
 
-for slug in TOOLS:
-    app.add_api_route(f"/{slug}", _make_tool_page(slug), methods=["GET"])
+for tool in TOOLS:
+    app.add_api_route(f"/{tool['slug']}", _make_tool_page(tool["slug"]), methods=["GET"])
