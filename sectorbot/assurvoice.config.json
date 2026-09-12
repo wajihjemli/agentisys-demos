@@ -1,0 +1,140 @@
+{
+  "_comment": "Configuration sectorielle d'AssurVoice. La chaîne vocale (STT Whisper, LLM, extraction JSON, TTS) reste identique quel que soit le secteur — seuls le nom et la persona de l'assistant(e), les champs extraits et le message d'exemple changent.",
+  "default_sector": "assurance",
+  "sectors": {
+    "assurance": {
+      "tool_name": "AssurVoice",
+      "icon": "🛡️",
+      "tagline": "Callbot vocal qui recueille une déclaration de sinistre à la voix et y répond en temps réel.",
+      "assistant_name": "Eva",
+      "persona": "compagnie d'assurance française",
+      "context_description": "la nature du sinistre, la date, le lieu, les dégâts",
+      "urgency_description": "blessures, incendie",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, j'ai eu un accident ce matin sur l'autoroute...",
+      "fields": ["nature_sinistre", "date_sinistre", "lieu", "degats", "blessures", "contact_urgence"],
+      "field_labels": {
+        "nature_sinistre": "Nature du sinistre",
+        "date_sinistre": "Date du sinistre",
+        "lieu": "Lieu",
+        "degats": "Dégâts",
+        "blessures": "Blessures",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    },
+    "telecom": {
+      "tool_name": "TechVoice",
+      "icon": "📡",
+      "tagline": "Callbot vocal qui recueille une réclamation télécom à la voix et y répond en temps réel.",
+      "assistant_name": "Léa",
+      "persona": "opérateur télécom",
+      "context_description": "le type de problème technique, la date, la ligne concernée, la gravité",
+      "urgency_description": "coupure totale de service, suspicion de fraude",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, ma connexion internet est coupée depuis ce matin...",
+      "fields": ["type_probleme", "date_probleme", "numero_ligne", "gravite", "contact_urgence"],
+      "field_labels": {
+        "type_probleme": "Type de problème",
+        "date_probleme": "Date du problème",
+        "numero_ligne": "Numéro de ligne",
+        "gravite": "Gravité",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    },
+    "fintech": {
+      "tool_name": "PayVoice",
+      "icon": "💳",
+      "tagline": "Callbot vocal qui recueille un signalement de paiement à la voix et y répond en temps réel.",
+      "assistant_name": "Nora",
+      "persona": "service de paiement en ligne",
+      "context_description": "le type d'opération, la date, le montant concerné, la gravité",
+      "urgency_description": "fraude, blocage de compte",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, je viens de voir une transaction que je n'ai pas faite sur mon compte...",
+      "fields": ["type_operation", "date_operation", "montant_concerne", "gravite", "contact_urgence"],
+      "field_labels": {
+        "type_operation": "Type d'opération",
+        "date_operation": "Date de l'opération",
+        "montant_concerne": "Montant concerné",
+        "gravite": "Gravité",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    },
+    "ecommerce": {
+      "tool_name": "ShopVoice",
+      "icon": "🛒",
+      "tagline": "Callbot vocal qui recueille une réclamation client à la voix et y répond en temps réel.",
+      "assistant_name": "Camille",
+      "persona": "site e-commerce",
+      "context_description": "le type de problème, le numéro de commande, le produit concerné, la gravité",
+      "urgency_description": "colis perdu, produit dangereux",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, mon colis n'est toujours pas arrivé alors qu'il devait être livré hier...",
+      "fields": ["type_probleme", "numero_commande", "produit_concerne", "gravite", "contact_urgence"],
+      "field_labels": {
+        "type_probleme": "Type de problème",
+        "numero_commande": "Numéro de commande",
+        "produit_concerne": "Produit concerné",
+        "gravite": "Gravité",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    },
+    "automobile": {
+      "tool_name": "AutoVoice",
+      "icon": "🚗",
+      "tagline": "Callbot vocal qui recueille une déclaration de panne à la voix et y répond en temps réel.",
+      "assistant_name": "Julien",
+      "persona": "constructeur automobile",
+      "context_description": "le type de problème, la date, l'immatriculation, la gravité",
+      "urgency_description": "panne moteur grave, accident",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, mon véhicule fait un bruit anormal au niveau du moteur depuis hier...",
+      "fields": ["type_probleme", "date_probleme", "immatriculation", "gravite", "contact_urgence"],
+      "field_labels": {
+        "type_probleme": "Type de problème",
+        "date_probleme": "Date du problème",
+        "immatriculation": "Immatriculation",
+        "gravite": "Gravité",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    },
+    "edtech": {
+      "tool_name": "LearnVoice",
+      "icon": "🎓",
+      "tagline": "Callbot vocal qui recueille une demande d'apprenant à la voix et y répond en temps réel.",
+      "assistant_name": "Sarah",
+      "persona": "plateforme de formation en ligne",
+      "context_description": "le type de problème, la formation concernée, la date, la gravité",
+      "urgency_description": "examen imminent, accès bloqué",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, je n'arrive plus à accéder à mon espace de formation...",
+      "fields": ["type_probleme", "formation_concernee", "date_probleme", "gravite", "contact_urgence"],
+      "field_labels": {
+        "type_probleme": "Type de problème",
+        "formation_concernee": "Formation concernée",
+        "date_probleme": "Date du problème",
+        "gravite": "Gravité",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    },
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoVoice",
+      "icon": "🦿",
+      "tagline": "Callbot vocal qui recueille une demande patient à la voix et y répond en temps réel.",
+      "assistant_name": "Claire",
+      "persona": "service après-vente d'attelles orthopédiques",
+      "context_description": "le type de problème, le dispositif concerné, l'urgence médicale, le délai avant opération",
+      "urgency_description": "opération imminente, dispositif manquant",
+      "emergency_number": "01 23 45 67 90",
+      "example_message": "Bonjour, je n'ai toujours pas reçu mon attelle alors que mon opération est dans 2 jours...",
+      "fields": ["type_probleme", "dispositif_concerne", "urgence_medicale", "delai_operation", "contact_urgence"],
+      "field_labels": {
+        "type_probleme": "Type de problème",
+        "dispositif_concerne": "Dispositif concerné",
+        "urgence_medicale": "Urgence médicale",
+        "delai_operation": "Délai avant opération",
+        "contact_urgence": "Contact d'urgence nécessaire"
+      }
+    }
+  }
+}

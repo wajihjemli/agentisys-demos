@@ -146,7 +146,7 @@ async function process() {
       setStep('step-stt', 'active');
       const formData = new FormData();
       formData.append('file', recordedBlob ? new File([recordedBlob], 'recording.webm', { type: 'audio/webm' }) : uploadedFile);
-      const sttRes = await fetch('/api/assurvoice/transcribe', { method: 'POST', body: formData });
+      const sttRes = await fetch('/api/transcribe', { method: 'POST', body: formData });
       const sttData = await sttRes.json();
       if (sttData.error) throw new Error(sttData.error);
       userText = sttData.text;
@@ -160,7 +160,7 @@ async function process() {
     resultBlock.style.display = 'block';
 
     setStep('step-llm', 'active');
-    const replyRes = await fetch('/api/assurvoice/reply', {
+    const replyRes = await fetch('/api/reply', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: userText }),
@@ -182,7 +182,7 @@ async function process() {
     extractionBlock.style.display = 'block';
 
     setStep('step-tts', 'active');
-    const ttsRes = await fetch('/api/assurvoice/tts', {
+    const ttsRes = await fetch('/api/tts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: replyData.reply, voice: voiceSelect.value }),
@@ -229,7 +229,7 @@ function applySectorData(data) {
 }
 
 sectorSelect.addEventListener('change', async () => {
-  const res = await fetch('/api/assurvoice/sector', {
+  const res = await fetch('/api/sector', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ sector: sectorSelect.value })
@@ -239,7 +239,7 @@ sectorSelect.addEventListener('change', async () => {
 });
 
 async function init() {
-  const sectorsRes = await fetch('/api/assurvoice/sectors');
+  const sectorsRes = await fetch('/api/sectors');
   const sectorsData = await sectorsRes.json();
 
   sectorSelect.innerHTML = '';
@@ -251,7 +251,7 @@ async function init() {
   });
   sectorSelect.value = sectorsData.default;
 
-  const bootstrapRes = await fetch('/api/assurvoice/bootstrap');
+  const bootstrapRes = await fetch('/api/bootstrap');
   const bootstrapData = await bootstrapRes.json();
   applySectorData(bootstrapData);
 }
