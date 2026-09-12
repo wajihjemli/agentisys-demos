@@ -34,7 +34,7 @@ async function translate() {
   audioRow.style.display = 'none';
 
   try {
-    const res = await fetch('/api/assurtranslate/translate', {
+    const res = await fetch('/api/translate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text, source: sourceLang.value, target: targetLang.value })
@@ -52,7 +52,7 @@ async function translate() {
     targetBox.setAttribute('dir', targetLang.value === 'ar' ? 'rtl' : 'ltr');
 
     translateBtn.textContent = 'Génération audio...';
-    const ttsRes = await fetch('/api/assurtranslate/tts', {
+    const ttsRes = await fetch('/api/tts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text: data.translated, lang: targetLang.value })
@@ -106,7 +106,7 @@ function applySectorData(data) {
 }
 
 sectorSelect.addEventListener('change', async () => {
-  const res = await fetch('/api/assurtranslate/sector', {
+  const res = await fetch('/api/sector', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ sector: sectorSelect.value })
@@ -116,7 +116,7 @@ sectorSelect.addEventListener('change', async () => {
 });
 
 async function init() {
-  const sectorsRes = await fetch('/api/assurtranslate/sectors');
+  const sectorsRes = await fetch('/api/sectors');
   const sectorsData = await sectorsRes.json();
 
   sectorSelect.innerHTML = '';
@@ -128,7 +128,7 @@ async function init() {
   });
   sectorSelect.value = sectorsData.default;
 
-  const bootstrapRes = await fetch('/api/assurtranslate/bootstrap');
+  const bootstrapRes = await fetch('/api/bootstrap');
   const bootstrapData = await bootstrapRes.json();
   applySectorData(bootstrapData);
 }

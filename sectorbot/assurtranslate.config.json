@@ -1,0 +1,55 @@
+{
+  "_comment": "Configuration sectorielle d'AssurTranslate. Le moteur (traduction contextuelle + TTS, langues supportées) reste identique quel que soit le secteur — seuls la persona du prompt et le texte d'exemple changent.",
+  "default_sector": "assurance",
+  "sectors": {
+    "assurance": {
+      "tool_name": "AssurTranslate",
+      "icon": "🛡️",
+      "tagline": "Traduit les échanges avec un assuré non francophone, en gardant le vocabulaire technique de l'assurance.",
+      "persona": "secteur de l'assurance",
+      "example_text": "Bonjour, votre sinistre a bien été enregistré. Un gestionnaire vous contactera sous 48 heures."
+    },
+    "telecom": {
+      "tool_name": "TechTranslate",
+      "icon": "📡",
+      "tagline": "Traduit les échanges avec un client non francophone, en gardant le vocabulaire technique des télécommunications.",
+      "persona": "secteur des télécommunications",
+      "example_text": "Bonjour, votre demande de résiliation a bien été enregistrée. Elle prendra effet dans 10 jours."
+    },
+    "fintech": {
+      "tool_name": "PayTranslate",
+      "icon": "💳",
+      "tagline": "Traduit les échanges avec un client non francophone, en gardant le vocabulaire technique des services financiers.",
+      "persona": "secteur des services financiers et du paiement",
+      "example_text": "Bonjour, votre carte a été bloquée par sécurité suite à une transaction suspecte. Une nouvelle carte vous sera envoyée sous 5 jours."
+    },
+    "ecommerce": {
+      "tool_name": "ShopTranslate",
+      "icon": "🛒",
+      "tagline": "Traduit les échanges avec un client non francophone, en gardant le vocabulaire technique du e-commerce.",
+      "persona": "secteur du commerce en ligne",
+      "example_text": "Bonjour, votre commande a bien été expédiée. Vous recevrez un email de suivi dans les prochaines heures."
+    },
+    "automobile": {
+      "tool_name": "AutoTranslate",
+      "icon": "🚗",
+      "tagline": "Traduit les échanges avec un client non francophone, en gardant le vocabulaire technique automobile.",
+      "persona": "secteur automobile",
+      "example_text": "Bonjour, votre véhicule est actuellement en réparation chez notre garage partenaire. Il sera prêt sous 3 jours."
+    },
+    "edtech": {
+      "tool_name": "LearnTranslate",
+      "icon": "🎓",
+      "tagline": "Traduit les échanges avec un apprenant non francophone, en gardant le vocabulaire technique de la formation.",
+      "persona": "secteur de la formation en ligne",
+      "example_text": "Bonjour, votre inscription à la formation a bien été confirmée. Vous recevrez vos identifiants d'accès sous 24 heures."
+    },
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoTranslate",
+      "icon": "🦿",
+      "tagline": "Traduit les échanges avec un patient non francophone, en gardant le vocabulaire technique médical.",
+      "persona": "secteur des dispositifs médicaux orthopédiques",
+      "example_text": "Bonjour, votre attelle a bien été expédiée et devrait arriver avant votre opération. N'hésitez pas à nous contacter si besoin."
+    }
+  }
+}
