@@ -12,20 +12,23 @@ import json
 import io
 from pathlib import Path
 
-from fastapi import APIRouter, UploadFile, File
+from fastapi import FastAPI, UploadFile, File
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from PIL import Image
 import pytesseract
 import openai
 
-router = APIRouter()
+app = FastAPI(title="AssurOCR")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 client = openai.OpenAI(api_key=GROQ_API_KEY, base_url="https://api.groq.com/openai/v1") if GROQ_API_KEY else None
 
-# sectorbot/ vit à la racine du repo, en frère de agentisys-suite/ — nécessite que le
-# repo entier soit cloné ensemble (ce n'est pas un microservice isolé).
-SECTORBOT_DIR = Path(__file__).parent.parent.parent.parent / "sectorbot"
+# sectorbot/ vit à la racine du repo, en frère de ce dossier — nécessite que le repo
+# entier soit cloné ensemble (ce n'est pas un microservice isolé).
+SECTORBOT_DIR = Path(__file__).parent.parent / "sectorbot"
 
 with open(SECTORBOT_DIR / "assurocr.config.json", "r", encoding="utf-8") as f:
     _config = json.load(f)
@@ -35,7 +38,12 @@ DEFAULT_SECTOR = _config["default_sector"]
 current_sector = DEFAULT_SECTOR
 
 
-@router.get("/sectors")
+@app.get("/")
+def index():
+    return FileResponse("static/index.html")
+
+
+@app.get("/api/sectors")
 def list_sectors():
     return {
         "sectors": {sid: {"tool_name": c["tool_name"], "icon": c["icon"], "tagline": c["tagline"]} for sid, c in SECTORS.items()},
@@ -47,7 +55,7 @@ class SectorRequest(BaseModel):
     sector: str
 
 
-@router.post("/sector")
+@app.post("/api/sector")
 def set_sector(req: SectorRequest):
     global current_sector
     if req.sector not in SECTORS:
@@ -69,12 +77,12 @@ def sector_payload(sector_id: str) -> dict:
     }
 
 
-@router.get("/bootstrap")
+@app.get("/api/bootstrap")
 def bootstrap():
     return sector_payload(current_sector)
 
 
-@router.post("/ocr")
+@app.post("/api/ocr")
 async def ocr(file: UploadFile = File(...)):
     """Étape 1 : lecture du document via Tesseract (local, pas de dépendance externe)."""
     contents = await file.read()
@@ -98,7 +106,7 @@ def rule_based_fallback(text: str, sector_id: str) -> dict:
     return fields
 
 
-@router.post("/structure")
+@app.post("/api/structure")
 def structure(req: StructureRequest):
     """Étape 2 : structuration du texte libre en champs — via un moteur IA si la clé est
     configurée, sinon repli automatique sur des règles métier (étape 3)."""

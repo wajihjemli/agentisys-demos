@@ -1,0 +1,174 @@
+{
+  "_comment": "Configuration sectorielle d'AssurOCR. Le pipeline (OCR Tesseract puis structuration IA avec repli par règles métier) reste identique quel que soit le secteur — les champs à extraire, leurs libellés et les règles de repli varient car chaque secteur traite un type de document différent.",
+  "default_sector": "assurance",
+  "sectors": {
+    "assurance": {
+      "tool_name": "AssurOCR",
+      "icon": "🛡️",
+      "tagline": "Extrait et structure un constat de sinistre automobile, sans ressaisie manuelle.",
+      "persona": "compagnie d'assurance",
+      "document_label": "un constat de sinistre automobile",
+      "extracts_summary": "Date, lieu, parties, dégâts",
+      "fields": ["date_sinistre", "lieu", "identite_assure", "nature_sinistre", "immatriculation", "montant_estime", "temoins", "blessures"],
+      "field_labels": {
+        "date_sinistre": "Date du sinistre",
+        "lieu": "Lieu",
+        "identite_assure": "Identité de l'assuré",
+        "nature_sinistre": "Nature du sinistre",
+        "immatriculation": "Immatriculation",
+        "montant_estime": "Montant estimé",
+        "temoins": "Témoins",
+        "blessures": "Blessures"
+      },
+      "field_patterns": {
+        "date_sinistre": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "immatriculation": "\\b([A-Z]{2}[-\\s]?\\d{3}[-\\s]?[A-Z]{2})\\b",
+        "montant_estime": "(\\d[\\d\\s]{1,7})\\s?(€|EUR|euros)"
+      }
+    },
+    "telecom": {
+      "tool_name": "TechOCR",
+      "icon": "📡",
+      "tagline": "Extrait et structure une facture ou un contrat télécom, sans ressaisie manuelle.",
+      "persona": "opérateur télécom",
+      "document_label": "une facture ou un contrat télécom",
+      "extracts_summary": "Facture, ligne, forfait, montant",
+      "fields": ["date_facture", "numero_client", "operateur", "montant_du", "date_echeance", "numero_ligne", "type_forfait", "mode_paiement"],
+      "field_labels": {
+        "date_facture": "Date de facture",
+        "numero_client": "Numéro client",
+        "operateur": "Opérateur",
+        "montant_du": "Montant dû",
+        "date_echeance": "Date d'échéance",
+        "numero_ligne": "Numéro de ligne",
+        "type_forfait": "Type de forfait",
+        "mode_paiement": "Mode de paiement"
+      },
+      "field_patterns": {
+        "date_facture": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "montant_du": "(\\d[\\d\\s]{1,7})\\s?(€|EUR|euros)",
+        "numero_ligne": "\\b(0[1-9](?:[\\s.\\-]?\\d{2}){4})\\b"
+      }
+    },
+    "fintech": {
+      "tool_name": "PayOCR",
+      "icon": "💳",
+      "tagline": "Extrait et structure un relevé de compte ou une facture de paiement, sans ressaisie manuelle.",
+      "persona": "service de paiement en ligne",
+      "document_label": "un relevé de compte ou une facture de paiement",
+      "extracts_summary": "Montant, compte, transaction, statut",
+      "fields": ["date_operation", "numero_compte", "montant", "type_transaction", "beneficiaire", "devise", "reference_transaction", "statut"],
+      "field_labels": {
+        "date_operation": "Date de l'opération",
+        "numero_compte": "Numéro de compte",
+        "montant": "Montant",
+        "type_transaction": "Type de transaction",
+        "beneficiaire": "Bénéficiaire",
+        "devise": "Devise",
+        "reference_transaction": "Référence de transaction",
+        "statut": "Statut"
+      },
+      "field_patterns": {
+        "date_operation": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "montant": "(\\d[\\d\\s]{1,7})\\s?(€|EUR|euros)",
+        "reference_transaction": "\\b([A-Z0-9]{8,20})\\b"
+      }
+    },
+    "ecommerce": {
+      "tool_name": "ShopOCR",
+      "icon": "🛒",
+      "tagline": "Extrait et structure un bon de livraison ou une facture d'achat, sans ressaisie manuelle.",
+      "persona": "site e-commerce",
+      "document_label": "un bon de livraison ou une facture d'achat",
+      "extracts_summary": "Commande, produit, montant, livraison",
+      "fields": ["date_commande", "numero_commande", "produit", "quantite", "montant_total", "adresse_livraison", "transporteur", "statut_livraison"],
+      "field_labels": {
+        "date_commande": "Date de commande",
+        "numero_commande": "Numéro de commande",
+        "produit": "Produit",
+        "quantite": "Quantité",
+        "montant_total": "Montant total",
+        "adresse_livraison": "Adresse de livraison",
+        "transporteur": "Transporteur",
+        "statut_livraison": "Statut de livraison"
+      },
+      "field_patterns": {
+        "date_commande": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "montant_total": "(\\d[\\d\\s]{1,7})\\s?(€|EUR|euros)",
+        "numero_commande": "\\b(CMD[-\\s]?\\d+|#\\d+)\\b"
+      }
+    },
+    "automobile": {
+      "tool_name": "AutoOCR",
+      "icon": "🚗",
+      "tagline": "Extrait et structure une facture de réparation ou d'entretien, sans ressaisie manuelle.",
+      "persona": "constructeur automobile",
+      "document_label": "une facture de réparation ou d'entretien",
+      "extracts_summary": "Intervention, pièces, garantie, montant",
+      "fields": ["date_intervention", "immatriculation", "kilometrage", "nature_intervention", "montant_ttc", "garage", "piece_remplacee", "duree_garantie"],
+      "field_labels": {
+        "date_intervention": "Date d'intervention",
+        "immatriculation": "Immatriculation",
+        "kilometrage": "Kilométrage",
+        "nature_intervention": "Nature de l'intervention",
+        "montant_ttc": "Montant TTC",
+        "garage": "Garage",
+        "piece_remplacee": "Pièce remplacée",
+        "duree_garantie": "Durée de garantie"
+      },
+      "field_patterns": {
+        "date_intervention": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "immatriculation": "\\b([A-Z]{2}[-\\s]?\\d{3}[-\\s]?[A-Z]{2})\\b",
+        "montant_ttc": "(\\d[\\d\\s]{1,7})\\s?(€|EUR|euros)",
+        "kilometrage": "\\b(\\d{1,3}[\\s.]?\\d{3})\\s?km\\b"
+      }
+    },
+    "edtech": {
+      "tool_name": "LearnOCR",
+      "icon": "🎓",
+      "tagline": "Extrait et structure un certificat ou une facture de formation, sans ressaisie manuelle.",
+      "persona": "plateforme de formation en ligne",
+      "document_label": "un certificat ou une facture de formation",
+      "extracts_summary": "Formation, durée, certificat, montant",
+      "fields": ["date_inscription", "nom_apprenant", "intitule_formation", "duree_formation", "montant_paye", "organisme", "numero_certificat", "date_obtention"],
+      "field_labels": {
+        "date_inscription": "Date d'inscription",
+        "nom_apprenant": "Nom de l'apprenant",
+        "intitule_formation": "Intitulé de la formation",
+        "duree_formation": "Durée de la formation",
+        "montant_paye": "Montant payé",
+        "organisme": "Organisme",
+        "numero_certificat": "Numéro de certificat",
+        "date_obtention": "Date d'obtention"
+      },
+      "field_patterns": {
+        "date_inscription": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "montant_paye": "(\\d[\\d\\s]{1,7})\\s?(€|EUR|euros)",
+        "numero_certificat": "\\b([A-Z]{2,4}-?\\d{4,10})\\b"
+      }
+    },
+    "dispositifs_medicaux": {
+      "tool_name": "OrthoOCR",
+      "icon": "🦿",
+      "tagline": "Extrait et structure une ordonnance médicale, sans ressaisie manuelle.",
+      "persona": "service après-vente d'attelles orthopédiques",
+      "document_label": "une ordonnance médicale",
+      "extracts_summary": "Prescription, dispositif, sécurité sociale, urgence",
+      "fields": ["date_prescription", "nom_patient", "nom_prescripteur", "type_dispositif", "duree_port", "numero_secu", "mutuelle", "urgence"],
+      "field_labels": {
+        "date_prescription": "Date de prescription",
+        "nom_patient": "Nom du patient",
+        "nom_prescripteur": "Nom du prescripteur",
+        "type_dispositif": "Type de dispositif",
+        "duree_port": "Durée de port",
+        "numero_secu": "Numéro de Sécurité Sociale",
+        "mutuelle": "Mutuelle",
+        "urgence": "Urgence"
+      },
+      "field_patterns": {
+        "date_prescription": "\\b(\\d{1,2}[/\\-.]\\d{1,2}[/\\-.]\\d{2,4})\\b",
+        "numero_secu": "\\b([12]\\s?\\d{2}\\s?\\d{2}\\s?\\d{2}\\s?\\d{3}\\s?\\d{3}\\s?\\d{2})\\b"
+      }
+    }
+  }
+}
